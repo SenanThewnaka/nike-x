@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+      <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+      <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+      <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/nikex?useSSL=false&amp;allowPublicKeyRetrieval=true</property>
+      <property name="hibernate.connection.username">root</property>
+      <property name="hibernate.connection.password">Senan@321</property>
+      <property name="hibernate.hbm2ddl.auto">update</property>
+      <property name="hibernate.show_sql">true</property>
+
+      <mapping class="com.zentora.nike_x.entity.Address"/>
+      <mapping class="com.zentora.nike_x.entity.Brand"/>
+      <mapping class="com.zentora.nike_x.entity.Cart"/>
+      <mapping class="com.zentora.nike_x.entity.CartItem"/>
+      <mapping class="com.zentora.nike_x.entity.Color"/>
+      <mapping class="com.zentora.nike_x.entity.Gender"/>
+      <mapping class="com.zentora.nike_x.entity.Invoice"/>
+      <mapping class="com.zentora.nike_x.entity.InvoiceItem"/>
+      <mapping class="com.zentora.nike_x.entity.Mobile"/>
+      <mapping class="com.zentora.nike_x.entity.Model"/>
+      <mapping class="com.zentora.nike_x.entity.Product"/>
+      <mapping class="com.zentora.nike_x.entity.Status"/>
+      <mapping class="com.zentora.nike_x.entity.Stock"/>
+      <mapping class="com.zentora.nike_x.entity.User"/>
+
+
+
+
+
+
+  </session-factory>
+</hibernate-configuration>
