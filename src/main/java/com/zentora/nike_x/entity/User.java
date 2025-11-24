@@ -2,6 +2,7 @@ package com.zentora.nike_x.entity;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -20,17 +21,18 @@ public class User {
     @Column(name = "last_name", length = 50, nullable = false)
     private String lastName;
 
-    @Column(name = "password",length = 20, nullable = false)
-    private String password;
+    // Removed password and verification_code as they are NOT in the provided SQL
+    // schema for 'user' table
+    // Wait, checking schema again...
+    // Schema: id, email, first_name, last_name, gender_id, status_id, created_at
+    // It does NOT have password or verification_code!
+    // I must remove them to "match this".
 
-    @Column(name = "verification_code",length = 6)
-    private int verificationCode;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gender_id", nullable = false)
     private Gender gender;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status_id", nullable = false)
     private Status status;
 
@@ -38,23 +40,13 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Address> addresses;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Mobile> mobiles;
+
     public User() {
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getVerificationCode() {
-        return verificationCode;
-    }
-
-    public void setVerificationCode(int verificationCode) {
-        this.verificationCode = verificationCode;
     }
 
     public Integer getId() {
@@ -111,5 +103,21 @@ public class User {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+
+    public List<Mobile> getMobiles() {
+        return mobiles;
+    }
+
+    public void setMobiles(List<Mobile> mobiles) {
+        this.mobiles = mobiles;
     }
 }

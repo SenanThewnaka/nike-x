@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike-X | GRN Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@500;700;900&family=Oswald:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js"></script>
+</head>
+
+<body class="bg-nike-dark text-white h-screen overflow-hidden font-sans selection:bg-nike-green selection:text-black">
+
+    <div class="flex h-full tech-grid">
+
+        <!-- Sidebar -->
+        <aside class="w-64 glass-card-desktop border-r border-white/5 flex flex-col relative z-20">
+            <!-- Logo -->
+            <div class="h-20 flex items-center px-8 border-b border-white/5">
+                <h2 class="font-futuristic text-2xl font-bold tracking-widest text-white">NIKE<span
+                        class="text-nike-green">-X</span></h2>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 py-8 px-4 space-y-2">
+                <a href="admin-dashboard.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">DASHBOARD</span>
+                </a>
+
+                <a href="admin-products.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">PRODUCTS</span>
+                </a>
+
+                <a href="admin-orders.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">ORDERS</span>
+                </a>
+
+                <a href="admin-users.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">USERS</span>
+                </a>
+
+                <a href="admin-suppliers.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">SUPPLIERS</span>
+                </a>
+
+                <a href="admin-grn.html"
+                    class="flex items-center gap-4 px-4 py-3 bg-nike-green/10 text-nike-green rounded-lg border border-nike-green/20 transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">GRN</span>
+                </a>
+            </nav>
+
+            <!-- User Profile -->
+            <div class="p-4 border-t border-white/5">
+                <div class="flex items-center gap-3 px-4 py-3 bg-white/5 rounded-lg border border-white/5">
+                    <div
+                        class="w-8 h-8 rounded-full bg-nike-green/20 flex items-center justify-center text-nike-green font-bold text-xs border border-nike-green/30">
+                        AD
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-white truncate">Admin User</p>
+                        <p class="text-xs text-zinc-500 truncate">admin@nike-x.com</p>
+                    </div>
+                    <button class="text-zinc-400 hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-hidden relative z-10">
+
+            <!-- Top Bar -->
+            <header class="h-20 glass-card-desktop border-b border-white/5 flex items-center justify-between px-8">
+                <!-- Search -->
+                <div class="relative w-96">
+                    <input type="text" placeholder="Search GRN records..."
+                        class="w-full bg-black/20 border border-white/10 rounded-lg py-2 pl-10 pr-4 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-nike-green/50 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-500 absolute left-3 top-3"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-4">
+                    <button class="p-2 text-zinc-400 hover:text-white relative">
+                        <div class="absolute top-2 right-2 w-2 h-2 bg-nike-green rounded-full animate-pulse"></div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+                    <button class="p-2 text-zinc-400 hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Scrollable Content -->
+            <div class="flex-1 overflow-y-auto p-8 space-y-8">
+
+                <!-- Header -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="font-futuristic text-3xl font-bold text-white">Goods Received Note (GRN)</h1>
+                        <p class="text-zinc-400 text-sm mt-1">Add new stock inventory from suppliers.</p>
+                    </div>
+                </div>
+
+                <!-- GRN Entry Form -->
+                <div class="glass-card-desktop p-8 rounded-xl border border-white/5">
+                    <form class="space-y-6" onsubmit="event.preventDefault();">
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Supplier Selection -->
+                            <div>
+                                <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-2">SELECT
+                                    SUPPLIER</label>
+                                <select
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors cursor-pointer">
+                                    <option value="" disabled selected>Choose a supplier...</option>
+                                    <option value="1">Nike Global Sourcing</option>
+                                    <option value="2">Asian Footwear Ltd</option>
+                                    <option value="3">Vietnam Shoe Co.</option>
+                                </select>
+                            </div>
+
+                            <!-- Product Selection -->
+                            <div>
+                                <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-2">SELECT
+                                    PRODUCT</label>
+                                <select
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors cursor-pointer">
+                                    <option value="" disabled selected>Choose a product...</option>
+                                    <option value="1">Nike Air Max Pulse</option>
+                                    <option value="2">Nike Dunk Low Retro</option>
+                                    <option value="3">Air Jordan 1 Low</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                            <!-- Color -->
+                            <div>
+                                <label
+                                    class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-2">COLOR</label>
+                                <input type="text" placeholder="e.g. Black/White"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                            </div>
+
+                            <!-- Size -->
+                            <div>
+                                <label
+                                    class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-2">SIZE</label>
+                                <select
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors cursor-pointer">
+                                    <option value="US 7">US 7</option>
+                                    <option value="US 8">US 8</option>
+                                    <option value="US 9">US 9</option>
+                                    <option value="US 10">US 10</option>
+                                    <option value="US 11">US 11</option>
+                                </select>
+                            </div>
+
+                            <!-- Quantity -->
+                            <div>
+                                <label
+                                    class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-2">QUANTITY</label>
+                                <input type="number" placeholder="0"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                            </div>
+
+                            <!-- Buying Price -->
+                            <div>
+                                <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-2">BUYING
+                                    PRICE ($)</label>
+                                <input type="number" placeholder="0.00"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                            </div>
+                        </div>
+
+                        <!-- Submit Action -->
+                        <div class="pt-4 flex justify-end">
+                            <button type="submit"
+                                class="bg-nike-green text-black font-bold py-3 px-8 rounded hover:bg-white transition-colors font-futuristic tracking-wider text-sm flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                                ADD TO STOCK
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- Recent GRN Table -->
+                <div class="glass-card-desktop rounded-xl border border-white/5 overflow-hidden">
+                    <div class="p-6 border-b border-white/5">
+                        <h3 class="font-futuristic text-lg font-bold text-white">Recent GRN Entries</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-zinc-400">
+                            <thead class="bg-white/5 text-xs uppercase font-futuristic tracking-wider text-white">
+                                <tr>
+                                    <th class="px-6 py-4">Date</th>
+                                    <th class="px-6 py-4">Supplier</th>
+                                    <th class="px-6 py-4">Product</th>
+                                    <th class="px-6 py-4">Details</th>
+                                    <th class="px-6 py-4">Qty</th>
+                                    <th class="px-6 py-4">Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="px-6 py-4">Oct 24, 2023</td>
+                                    <td class="px-6 py-4">Nike Global Sourcing</td>
+                                    <td class="px-6 py-4">Nike Air Max Pulse</td>
+                                    <td class="px-6 py-4">Black/White, US 10</td>
+                                    <td class="px-6 py-4 text-white font-bold">50</td>
+                                    <td class="px-6 py-4">$4,500.00</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="px-6 py-4">Oct 23, 2023</td>
+                                    <td class="px-6 py-4">Asian Footwear Ltd</td>
+                                    <td class="px-6 py-4">Nike Dunk Low Retro</td>
+                                    <td class="px-6 py-4">Panda, US 9</td>
+                                    <td class="px-6 py-4 text-white font-bold">100</td>
+                                    <td class="px-6 py-4">$6,200.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+
+</html>

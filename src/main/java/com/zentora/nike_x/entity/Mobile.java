@@ -16,7 +16,7 @@ public class Mobile {
     @Column(name = "mobile", length = 45, nullable = false)
     private String mobile;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

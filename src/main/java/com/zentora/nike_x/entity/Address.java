@@ -19,7 +19,7 @@ public class Address {
     @Column(name = "postal_code", length = 5, nullable = false)
     private String postalCode;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

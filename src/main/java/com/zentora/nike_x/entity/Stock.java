@@ -14,20 +14,11 @@ public class Stock {
     @Column(name = "qty", nullable = false)
     private Integer qty;
 
-    @Column(name = "price", nullable = false)
-    private Double price;
+    @Column(name = "selling_price", nullable = false)
+    private Double sellingPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "status_id", nullable = false)
-    private Status status;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
-
-    @ManyToOne
-    @JoinColumn(name = "color_id", nullable = false)
-    private Color color;
+    @Column(name = "buying_price", nullable = false)
+    private Double buyingPrice;
 
     @Column(name = "discount")
     private Double discount;
@@ -35,6 +26,22 @@ public class Stock {
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "status_id", nullable = false)
+    private Status status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "color_id", nullable = false)
+    private Color color;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "grn_id", nullable = false)
+    private Grn grn;
 
     public Stock() {
     }
@@ -55,12 +62,36 @@ public class Stock {
         this.qty = qty;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getSellingPrice() {
+        return sellingPrice;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setSellingPrice(Double sellingPrice) {
+        this.sellingPrice = sellingPrice;
+    }
+
+    public Double getBuyingPrice() {
+        return buyingPrice;
+    }
+
+    public void setBuyingPrice(Double buyingPrice) {
+        this.buyingPrice = buyingPrice;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Status getStatus() {
@@ -87,19 +118,11 @@ public class Stock {
         this.color = color;
     }
 
-    public Double getDiscount() {
-        return discount;
+    public Grn getGrn() {
+        return grn;
     }
 
-    public void setDiscount(Double discount) {
-        this.discount = discount;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setGrn(Grn grn) {
+        this.grn = grn;
     }
 }

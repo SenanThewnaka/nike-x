@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nike-X | Sign In</title>
+    <title>Nike-X | Admin Access</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@500;700;900&family=Oswald:wght@400;700&display=swap"
@@ -12,7 +12,6 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/js/script.js"></script>
-</head>
 </head>
 
 <body
@@ -45,15 +44,14 @@
 
             <!-- Center/Bottom Big Text -->
             <div class="space-y-2 animate-fade-in-up" style="animation-delay: 0.4s;">
-                <p class="font-condensed text-nike-green tracking-[0.3em] text-sm uppercase font-bold mb-4">New
-                    Collection Drop</p>
+                <p class="font-condensed text-nike-green tracking-[0.3em] text-sm uppercase font-bold mb-4">
+                    Restricted Area</p>
                 <h1 class="font-futuristic text-7xl xl:text-8xl font-black leading-none uppercase italic">
-                    Future <br>
-                    <span class="text-stroke">Ready</span>
+                    Admin <br>
+                    <span class="text-stroke">Portal</span>
                 </h1>
                 <p class="text-zinc-400 max-w-md mt-6 text-sm leading-relaxed border-l-2 border-nike-green pl-4">
-                    Experience the next generation of footwear technology. Adaptive cushioning, self-lacing systems, and
-                    sustainable materials.
+                    Authorized personnel only. All activities are monitored and logged for security purposes.
                 </p>
             </div>
 
@@ -61,7 +59,7 @@
             <div class="flex gap-8 text-[10px] text-zinc-500 font-futuristic tracking-widest uppercase animate-fade-in-up"
                 style="animation-delay: 0.6s;">
                 <span>System: v2.4.0</span>
-                <span>Status: Online</span>
+                <span>Status: Secure</span>
                 <span>Region: Global</span>
             </div>
         </div>
@@ -106,9 +104,12 @@
             </div>
 
             <!-- Header -->
-            <div class="mb-10 lg:mb-12 text-center lg:text-left">
-                <h3 class="font-futuristic text-2xl lg:text-3xl font-bold text-white mb-2">Welcome Back</h3>
-                <p class="text-zinc-400 lg:text-zinc-500 text-sm">Enter your credentials to access your account.</p>
+            <div class="mb-10 lg:mb-12 text-center lg:text-left relative">
+                <div
+                    class="absolute -top-6 right-0 bg-nike-green/10 border border-nike-green/20 text-nike-green text-[10px] px-2 py-0.5 rounded font-futuristic tracking-wider">
+                    SECURE ACCESS</div>
+                <h3 class="font-futuristic text-2xl lg:text-3xl font-bold text-white mb-2">System Access</h3>
+                <p class="text-zinc-400 lg:text-zinc-500 text-sm">Enter admin credentials to proceed.</p>
             </div>
 
             <!-- Form -->
@@ -121,7 +122,7 @@
                         placeholder="Email Address">
                     <label for="email"
                         class="absolute left-0 -top-3.5 text-xs text-zinc-400 lg:text-zinc-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-nike-green font-futuristic tracking-wide">
-                        EMAIL ADDRESS
+                        ADMIN EMAIL
                     </label>
                 </div>
 
@@ -168,34 +169,31 @@
                         </div>
                         <span
                             class="text-xs text-zinc-400 group-hover:text-zinc-300 transition-colors font-futuristic tracking-wider">REMEMBER
-                            ME</span>
+                            DEVICE</span>
                     </label>
                     <a href="#"
-                        class="text-xs text-zinc-400 hover:text-nike-green transition-colors font-futuristic tracking-wider">FORGOT
-                        PASSWORD?</a>
+                        class="text-xs text-zinc-400 hover:text-nike-green transition-colors font-futuristic tracking-wider">RESET
+                        ACCESS?</a>
                 </div>
 
                 <!-- Submit Button -->
                 <button type="submit"
                     class="w-full bg-white text-black font-bold py-4 rounded-none hover:bg-nike-green transition-all duration-300 font-futuristic tracking-widest text-sm flex items-center justify-center gap-2 group mt-8 lg:rounded-sm">
-                    SIGN IN
+                    AUTHENTICATE
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
                 </button>
 
             </form>
 
-            <!-- Footer -->
+            <!-- Footer (Removed Sign Up link for Admin) -->
             <div class="mt-12 text-center">
-                <p class="text-zinc-500 text-xs font-futuristic tracking-wider">
-                    NOT A MEMBER?
-                    <a href="sign-up.html"
-                        class="text-white hover:text-nike-green ml-1 transition-colors border-b border-zinc-700 hover:border-nike-green pb-0.5">JOIN
-                        THE CLUB</a>
+                <p class="text-zinc-600 text-[10px] font-futuristic tracking-wider">
+                    UNAUTHORIZED ACCESS IS PROHIBITED
                 </p>
             </div>
 

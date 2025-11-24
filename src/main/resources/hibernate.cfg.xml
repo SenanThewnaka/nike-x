@@ -9,7 +9,7 @@
       <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/nikex?useSSL=false&amp;allowPublicKeyRetrieval=true</property>
       <property name="hibernate.connection.username">root</property>
       <property name="hibernate.connection.password">Senan@321</property>
-      <property name="hibernate.hbm2ddl.auto">update</property>
+      <property name="hibernate.hbm2ddl.auto">create</property>
       <property name="hibernate.show_sql">true</property>
 
       <mapping class="com.zentora.nike_x.entity.Address"/>
@@ -17,12 +17,15 @@
       <mapping class="com.zentora.nike_x.entity.Cart"/>
       <mapping class="com.zentora.nike_x.entity.CartItem"/>
       <mapping class="com.zentora.nike_x.entity.Color"/>
+      <mapping class="com.zentora.nike_x.entity.City"/>
       <mapping class="com.zentora.nike_x.entity.Gender"/>
+      <mapping class="com.zentora.nike_x.entity.Grn"/>
       <mapping class="com.zentora.nike_x.entity.Invoice"/>
       <mapping class="com.zentora.nike_x.entity.InvoiceItem"/>
       <mapping class="com.zentora.nike_x.entity.Mobile"/>
       <mapping class="com.zentora.nike_x.entity.Model"/>
       <mapping class="com.zentora.nike_x.entity.Product"/>
+      <mapping class="com.zentora.nike_x.entity.Seller"/>
       <mapping class="com.zentora.nike_x.entity.Status"/>
       <mapping class="com.zentora.nike_x.entity.Stock"/>
       <mapping class="com.zentora.nike_x.entity.User"/>
