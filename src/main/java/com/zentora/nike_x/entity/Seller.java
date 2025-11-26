@@ -2,6 +2,10 @@ package com.zentora.nike_x.entity;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "seller")
 public class Seller {
@@ -22,6 +26,17 @@ public class Seller {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status_id", nullable = false)
     private Status status;
+
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Grn> grns = new HashSet<>();
+
+    public Set<Grn> getGrns() {
+        return grns;
+    }
+
+    public void setGrns(Set<Grn> grns) {
+        this.grns = grns;
+    }
 
     public Integer getId() {
         return id;

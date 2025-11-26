@@ -6,6 +6,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "user")
+@NamedQuery(name = "User.getByEmail",
+        query = "FROM User u WHERE u.email=:email")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,12 +23,11 @@ public class User {
     @Column(name = "last_name", length = 50, nullable = false)
     private String lastName;
 
-    // Removed password and verification_code as they are NOT in the provided SQL
-    // schema for 'user' table
-    // Wait, checking schema again...
-    // Schema: id, email, first_name, last_name, gender_id, status_id, created_at
-    // It does NOT have password or verification_code!
-    // I must remove them to "match this".
+    @Column(name = "password", nullable = false, length = 25)
+    private String password;
+
+    @Column(name = "verification_code", length = 6)
+    private String verificationCode;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gender_id", nullable = false)
@@ -45,6 +46,22 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Mobile> mobiles;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
 
     public User() {
     }

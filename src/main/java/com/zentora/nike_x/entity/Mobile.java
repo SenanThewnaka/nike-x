@@ -10,10 +10,7 @@ public class Mobile {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "contry_code", length = 45, nullable = false)
-    private String countryCode;
-
-    @Column(name = "mobile", length = 45, nullable = false)
+    @Column(name = "mobile", length = 10, nullable = false)
     private String mobile;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -29,14 +26,6 @@ public class Mobile {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
     }
 
     public String getMobile() {

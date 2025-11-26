@@ -10,7 +10,7 @@ public class Gender {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "gender", length = 7, nullable = false)
+    @Column(name = "gender", length = 20, nullable = false)
     private String name;
 
     public Gender() {

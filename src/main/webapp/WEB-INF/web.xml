@@ -3,4 +3,31 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+
+    <filter>
+        <filter-name>AuthAccessFilter</filter-name>
+        <filter-class>com.zentora.nike_x.middleware.AuthAccessFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthAccessFilter</filter-name>
+        <url-pattern>/sign-up.html</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthAccessFilter</filter-name>
+        <url-pattern>/sign-in.html</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthAccessFilter</filter-name>
+        <url-pattern>/verify-email.html</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AccessControlFilter</filter-name>
+        <filter-class>com.zentora.nike_x.middleware.AccessControlFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AccessControlFilter</filter-name>
+        <url-pattern>/my-account.html</url-pattern>
+    </filter-mapping>
 </web-app>

@@ -11,7 +11,6 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/script.js"></script>
 </head>
 </head>
 
@@ -112,7 +111,7 @@
             </div>
 
             <!-- Form -->
-            <form class="space-y-6" onsubmit="event.preventDefault();">
+            <form class="space-y-6">
 
                 <!-- Name Row -->
                 <div class="flex gap-4">
@@ -160,6 +159,29 @@
                     </label>
                 </div>
 
+                <!-- Gender Select -->
+                <div class="group relative">
+                    <select id="gender"
+                        class="peer w-full bg-transparent border-b border-zinc-600 lg:border-zinc-700 py-3 text-white focus:border-nike-green focus:outline-none transition-colors duration-300 appearance-none">
+                        <option value="0" disabled selected class="bg-nike-dark text-zinc-500">Select Gender</option>
+                        <option value="1" class="bg-nike-dark text-white">Male</option>
+                        <option value="2" class="bg-nike-dark text-white">Female</option>
+                        <option value="3" class="bg-nike-dark text-white">Non-Binary</option>
+                    </select>
+                    <label for="gender"
+                        class="absolute left-0 -top-3.5 text-xs text-zinc-400 lg:text-zinc-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-nike-green font-futuristic tracking-wide">
+                        GENDER
+                    </label>
+                    <div
+                        class="absolute right-0 top-3 pointer-events-none text-zinc-400 peer-focus:text-nike-green transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                </div>
+
                 <!-- Password Input -->
                 <div class="group relative">
                     <input type="password" id="password"
@@ -188,27 +210,8 @@
                     </button>
                 </div>
 
-                <!-- Actions -->
-                <div class="flex items-center pt-2">
-                    <label class="flex items-center space-x-2 cursor-pointer group">
-                        <div class="relative">
-                            <input type="checkbox" class="peer sr-only">
-                            <div
-                                class="w-4 h-4 border border-zinc-600 rounded bg-transparent peer-checked:bg-nike-green peer-checked:border-nike-green transition-all">
-                            </div>
-                            <svg class="w-3 h-3 text-black absolute top-0.5 left-0.5 opacity-0 peer-checked:opacity-100 transition-opacity"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                        </div>
-                        <span
-                            class="text-xs text-zinc-400 group-hover:text-zinc-300 transition-colors font-futuristic tracking-wider">I
-                            AGREE TO TERMS & CONDITIONS</span>
-                    </label>
-                </div>
 
-                <!-- Submit Button -->
-                <button type="submit"
+                <button type="button" onclick="signUp();"
                     class="w-full bg-white text-black font-bold py-4 rounded-none hover:bg-nike-green transition-all duration-300 font-futuristic tracking-widest text-sm flex items-center justify-center gap-2 group mt-8 lg:rounded-sm">
                     SIGN UP
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -233,6 +236,11 @@
 
         </div>
     </div>
+
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/sign-up.js"></script>
+    <script src="assets/js/notiflix-aio-3.2.8.min.js"></script>
 
 </body>
 
