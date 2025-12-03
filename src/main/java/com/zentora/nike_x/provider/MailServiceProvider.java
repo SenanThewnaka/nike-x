@@ -1,32 +1,33 @@
 package com.zentora.nike_x.provider;
 
-import jakarta.mail.Authenticator;
-import jakarta.mail.Authenticator;
-import jakarta.mail.PasswordAuthentication;
-import com.zentora.nike_x.mail.Mailable;
+import com.mailersend.sdk.MailerSend;
+import com.mailersend.sdk.emails.Email;
+import com.mailersend.sdk.exceptions.MailerSendException;
+import com.zentora.nike_x.mail.MailContent;
 import com.zentora.nike_x.util.Env;
 
-import java.util.Properties;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class MailServiceProvider {
-    private ThreadPoolExecutor executor;
-    private Authenticator authenticator;
-    private final BlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<>();
-    private final Properties properties = new Properties();
+
     private static MailServiceProvider mailServiceProvider;
+    private final String API_TOKEN = Env.get("mailersend.api_token"); // Use Env!
+
+
+    private final String FROM_EMAIL = "MS_sq83ir@test-vz9dlem5jq74kj50.mlsender.net";
+    private final String FROM_NAME = "Nike-X";
+
+    private ThreadPoolExecutor executor;
+    private final BlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<>();
 
     private MailServiceProvider() {
-        properties.put("mail.smtp.auth", true);
-        properties.put("mail.smtp.starttls.enable", true);
-        properties.put("mail.smtp.host", Env.get("mail.host"));
-        properties.put("mail.smtp.port", Env.get("mail.port"));
+
     }
 
-    public static MailServiceProvider getInstance() {
+    public static synchronized MailServiceProvider getMailServiceProvider() {
         if (mailServiceProvider == null) {
             mailServiceProvider = new MailServiceProvider();
         }
@@ -34,24 +35,17 @@ public class MailServiceProvider {
     }
 
     public void start() {
-        authenticator = new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(Env.get("mail.username"), Env.get("mail.password"));
-            }
-        };
-        executor = new ThreadPoolExecutor(2, 5, 5,
-                TimeUnit.SECONDS, blockingQueue, new ThreadPoolExecutor.AbortPolicy());
+
+        executor = new ThreadPoolExecutor(
+                2,
+                5,
+                5,
+                TimeUnit.SECONDS,
+                blockingQueue,
+                new ThreadPoolExecutor.AbortPolicy()
+        );
         executor.prestartCoreThread();
-        System.out.println("\u001B[32mEmailServiceProvider Initialized...\u001B[32m");
-    }
-
-    public Properties getProperties() {
-        return properties;
-    }
-
-    public Authenticator getAuthenticator() {
-        return authenticator;
+        System.out.println("MailServiceProvider Started (Background Threads Ready)");
     }
 
     public void shutdown() {
@@ -60,8 +54,39 @@ public class MailServiceProvider {
         }
     }
 
-    public void sendMail(Mailable mailable){
-        boolean offer = blockingQueue.offer(mailable);
+    public void sendMail(MailContent mailContent) {
+
+
+        Runnable emailTask = () -> {
+            try {
+                Email email = new Email();
+
+                email.setFrom(FROM_NAME, FROM_EMAIL);
+                email.addRecipient("User", mailContent.getToEmail());
+                email.setSubject(mailContent.getSubject());
+
+
+                email.setHtml(mailContent.getHtmlContent());
+
+
+                email.setPlain("Please enable HTML to view this email.");
+
+                MailerSend ms = new MailerSend();
+                ms.setToken(API_TOKEN);
+                ms.emails().send(email);
+
+                System.out.println("Email sent successfully to: " + mailContent.getToEmail());
+
+            } catch (MailerSendException e) {
+                System.err.println("Error sending email: " + e.getMessage());
+                e.printStackTrace();
+            }
+        };
+
+
+        boolean offered = blockingQueue.offer(emailTask);
+        if (!offered) {
+            System.err.println("Email Queue Full!");
+        }
     }
 }
-

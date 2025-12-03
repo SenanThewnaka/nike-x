@@ -19,6 +19,15 @@ public class UserDTO implements Serializable {
     private String createdAt;
     private String newPassword;
     private String confirmPassword;
+    private String newEmail;
+
+    public String getNewEmail() {
+        return newEmail;
+    }
+
+    public void setNewEmail(String newEmail) {
+        this.newEmail = newEmail;
+    }
 
     public UserDTO() {
     }

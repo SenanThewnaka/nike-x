@@ -120,6 +120,14 @@
             </dependency>
 
 <!--        for hashing end-->
+
+<!--        for email-->
+        <dependency>
+            <groupId>com.mailersend</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>1.4.1</version>
+        </dependency>
+<!--        for email-->
     </dependencies>
     <build>
         <finalName>${artifactId}</finalName>

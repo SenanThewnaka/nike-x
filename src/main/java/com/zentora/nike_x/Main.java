@@ -1,26 +1,37 @@
 package com.zentora.nike_x;
 
+import com.zentora.nike_x.config.AppConfig;
+import com.zentora.nike_x.listener.ContextPathListener;
+import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
+import org.glassfish.jersey.servlet.ServletContainer;
 
 import java.io.File;
 
 public class Main {
 
+    private static final int SERVER_PORT = 8080;
+    private static final String CONTEXT_PATH = "/nike-x";
 
-        private static final int SERVER_PORT = 8080;
-        public static void main(String[] args) {
-            try {
+    public static void main(String[] args) {
+        try {
             Tomcat tomcat = new Tomcat();
             tomcat.setPort(SERVER_PORT);
             tomcat.getConnector();
-            tomcat.addWebapp("/nike-x", new File("src/main/webapp").getAbsolutePath());
+
+            Context context = tomcat.addWebapp(CONTEXT_PATH, new File("src/main/webapp").getAbsolutePath());
+            Tomcat.addServlet(context, "JerseyServlet", new ServletContainer(new AppConfig()));
+            context.addServletMappingDecoded("/api/*", "JerseyServlet");
+
+            context.addApplicationListener(ContextPathListener.class.getName());
+
             tomcat.start();
-                System.out.println("App URL: http://localhost:" + SERVER_PORT + "/nike-x");
+            System.out.println("App URL: http://localhost:" + SERVER_PORT + CONTEXT_PATH);
             tomcat.getServer().await();
         } catch (LifecycleException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Tomcat Embedded Server loading failed: " + e.getMessage());
         }
-        }
+    }
 
 }

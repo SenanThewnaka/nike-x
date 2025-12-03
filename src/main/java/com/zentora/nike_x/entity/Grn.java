@@ -1,6 +1,8 @@
 package com.zentora.nike_x.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.util.Date;
 
 @Entity
@@ -11,8 +13,8 @@ public class Grn {
     @Column(name = "id")
     private Integer id;
 
+    @CreationTimestamp
     @Column(name = "date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)

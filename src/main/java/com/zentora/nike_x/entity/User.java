@@ -1,6 +1,8 @@
 package com.zentora.nike_x.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class User {
     @Column(name = "last_name", length = 50, nullable = false)
     private String lastName;
 
-    @Column(name = "password", nullable = false, length = 25)
+    @Column(name = "password", nullable = false, length = 100)
     private String password;
 
     @Column(name = "verification_code", length = 6)
@@ -37,8 +39,8 @@ public class User {
     @JoinColumn(name = "status_id", nullable = false)
     private Status status;
 
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

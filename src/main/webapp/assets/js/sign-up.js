@@ -1,7 +1,6 @@
 async function signUp() {
     Notiflix.Loading.pulse("Wait...", {
         clickToClose: false,
-        svgColor: '#0284c7'
     });
 
 
@@ -34,15 +33,18 @@ async function signUp() {
             const data = await response.json();
             if (data.status) {
                 Notiflix.Report.success(
-                    'SmartTrade',
+                    'Nike-X',
                     data.message,
-                    'Okay'
+                    'Okay',
+                    () => {
+                        window.location.href = 'verify-email.html?email=' + email;
+                    }
                 );
             } else {
                 Notiflix.Notify.failure(data.message);
             }
         } else {
-            Notiflix.Notify.failure(response);
+            Notiflix.Notify.failure("Something went wrong. Please try again later.");
         }
     } catch (e) {
         Notiflix.Notify.failure(e.message, {

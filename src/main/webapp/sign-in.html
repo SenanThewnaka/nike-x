@@ -112,7 +112,7 @@
             </div>
 
             <!-- Form -->
-            <form class="space-y-8" onsubmit="event.preventDefault();">
+            <form class="space-y-8">
 
                 <!-- Email Input -->
                 <div class="group relative">
@@ -170,13 +170,13 @@
                             class="text-xs text-zinc-400 group-hover:text-zinc-300 transition-colors font-futuristic tracking-wider">REMEMBER
                             ME</span>
                     </label>
-                    <a href="#"
+                    <a href="forgot-password.html"
                         class="text-xs text-zinc-400 hover:text-nike-green transition-colors font-futuristic tracking-wider">FORGOT
                         PASSWORD?</a>
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit"
+                <button type="button" onclick="signIn()"
                     class="w-full bg-white text-black font-bold py-4 rounded-none hover:bg-nike-green transition-all duration-300 font-futuristic tracking-widest text-sm flex items-center justify-center gap-2 group mt-8 lg:rounded-sm">
                     SIGN IN
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -202,6 +202,9 @@
         </div>
     </div>
 
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/notiflix-aio-3.2.8.min.js"></script>
+    <script src="assets/js/sign-in.js"></script>
 </body>
 
 </html>

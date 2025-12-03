@@ -1,6 +1,9 @@
 package com.zentora.nike_x.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "invoice")
@@ -10,6 +13,10 @@ public class Invoice {
     @Column(name = "id")
     private Integer id;
 
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false)
+    private Date createdAt;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -17,6 +24,10 @@ public class Invoice {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
     public Invoice() {
     }

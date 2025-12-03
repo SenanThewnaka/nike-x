@@ -9,11 +9,11 @@ import jakarta.servlet.annotation.WebListener;
 public class ContextPathListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        MailServiceProvider.getInstance().start();
+        MailServiceProvider.getMailServiceProvider().start();
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        MailServiceProvider.getInstance().shutdown();
+        MailServiceProvider.getMailServiceProvider().shutdown();
     }
 }
