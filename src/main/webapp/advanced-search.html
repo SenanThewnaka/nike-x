@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike-X | Advanced Search</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/slider.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#0f0f11',
+                        'brand-accent': '#22c55e', // Green-500
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-black text-white antialiased selection:bg-green-500 selection:text-white">
+
+    <!-- Gradient Background -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="gradient-blob top-[-20%] left-[-10%]"></div>
+        <div class="gradient-blob bottom-[-20%] right-[-10%] bg-emerald-600/30 w-[800px] h-[800px]"></div>
+    </div>
+
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+    <script src="assets/js/components/header.js"></script>
+    <script>
+        loadHeader();
+    </script>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-28 pb-12 container mx-auto px-6">
+        <div class="flex flex-col md:flex-row gap-8">
+
+            <!-- Filters Sidebar -->
+            <aside class="w-full md:w-1/4 space-y-6">
+                <div class="glass-panel rounded-3xl p-6 sticky top-28">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold">Filters</h2>
+                        <button class="text-xs text-green-500 hover:text-white transition-colors">Reset All</button>
+                    </div>
+
+                    <!-- Search Input -->
+                    <div class="mb-6">
+                        <div class="relative">
+                            <input type="text" id="search-input" placeholder="Search products..."
+                                class="w-full glass-morphism bg-transparent border-gray-700/50 rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:border-green-500 transition-colors text-white placeholder-gray-600 text-sm">
+                            <i
+                                class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                        </div>
+                    </div>
+
+                    <!-- Price Range -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-bold text-gray-300 mb-3">Price Range</h3>
+                        <div class="px-2">
+                            <div class="relative h-2 bg-gray-700 rounded-full mb-4">
+                                <div id="price-track" class="absolute h-full bg-green-500 rounded-full"
+                                    style="left: 0%; right: 0%;"></div>
+                                <input type="range" id="price-min" min="0" max="50000" value="0" step="100"
+                                    class="absolute w-full h-full appearance-none bg-transparent pointer-events-none z-20">
+                                <input type="range" id="price-max" min="0" max="50000" value="50000" step="100"
+                                    class="absolute w-full h-full appearance-none bg-transparent pointer-events-none z-20">
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-400 font-mono">
+                                <span>Rs. <span id="price-min-val">0</span></span>
+                                <span>Rs. <span id="price-max-val">50000</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brands -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-bold text-gray-300 mb-3">Brands</h3>
+                        <div class="space-y-2" id="brands-container">
+                            <!-- Populated by JS -->
+                            <div class="text-gray-500 text-sm">Loading...</div>
+                        </div>
+                    </div>
+
+                    <!-- Size -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-bold text-gray-300 mb-3">Size</h3>
+                        <div class="relative">
+                            <select id="size-select"
+                                class="w-full glass-morphism bg-transparent border-gray-700/50 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:border-green-500 transition-colors text-white text-sm cursor-pointer">
+                                <option value="" class="bg-black text-gray-500">Loading...</option>
+                            </select>
+                            <div
+                                class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-400">
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Colors -->
+                    <div>
+                        <h3 class="text-sm font-bold text-gray-300 mb-3">Color</h3>
+                        <div class="flex flex-wrap gap-3" id="colors-container">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Apply Button -->
+                    <div class="pt-4 border-t border-white/10 mt-6">
+                        <button onclick="updateFilters()"
+                            class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-green-600/30">
+                            Apply Filters
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Results Area -->
+            <section class="flex-1">
+                <!-- Top Bar -->
+                <div
+                    class="glass-panel rounded-2xl p-4 mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-sm">Showing <span class="text-white font-bold"
+                            id="result-count">0</span> results</p>
+                    <div class="flex items-center gap-3">
+                        <span class="text-gray-400 text-sm">Sort By:</span>
+                        <select id="sort-select"
+                            class="bg-black/30 border border-gray-700 text-white text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2">
+                            <option value="NEWEST">Newest Arrivals</option>
+                            <option value="PRICE_ASC">Price: Low to High</option>
+                            <option value="PRICE_DESC">Price: High to Low</option>
+                            <option value="POPULARITY">Popularity</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="product-grid">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex justify-center mt-12 gap-2" id="pagination-container">
+                    <!-- Populated by JS -->
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <script src="assets/js/components/footer.js"></script>
+    <script src="assets/js/notiflix-aio-3.2.8.min.js"></script>
+    <script src="assets/js/advanced-search.js"></script>
+    <script>
+        loadFooter();
+    </script>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const icon = menuBtn.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

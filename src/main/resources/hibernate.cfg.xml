@@ -13,6 +13,7 @@
       <property name="hibernate.show_sql">true</property>
 
       <mapping class="com.zentora.nike_x.entity.Address"/>
+      <mapping class="com.zentora.nike_x.entity.Admin"/>
       <mapping class="com.zentora.nike_x.entity.Brand"/>
       <mapping class="com.zentora.nike_x.entity.Cart"/>
       <mapping class="com.zentora.nike_x.entity.CartItem"/>
@@ -20,15 +21,23 @@
       <mapping class="com.zentora.nike_x.entity.City"/>
       <mapping class="com.zentora.nike_x.entity.Gender"/>
       <mapping class="com.zentora.nike_x.entity.Grn"/>
+      <mapping class="com.zentora.nike_x.entity.GrnItem"/>
       <mapping class="com.zentora.nike_x.entity.Invoice"/>
       <mapping class="com.zentora.nike_x.entity.InvoiceItem"/>
       <mapping class="com.zentora.nike_x.entity.Mobile"/>
       <mapping class="com.zentora.nike_x.entity.Model"/>
+      <mapping class="com.zentora.nike_x.entity.Order"/>
+      <mapping class="com.zentora.nike_x.entity.OrderItem"/>
       <mapping class="com.zentora.nike_x.entity.Product"/>
+      <mapping class="com.zentora.nike_x.entity.ProductImage"/>
+      <mapping class="com.zentora.nike_x.entity.Review"/>
+      <mapping class="com.zentora.nike_x.entity.ReviewImage"/>
       <mapping class="com.zentora.nike_x.entity.Seller"/>
+      <mapping class="com.zentora.nike_x.entity.Size"/>
       <mapping class="com.zentora.nike_x.entity.Status"/>
       <mapping class="com.zentora.nike_x.entity.Stock"/>
       <mapping class="com.zentora.nike_x.entity.User"/>
+      <mapping class="com.zentora.nike_x.entity.Wishlist"/>
 
 
 

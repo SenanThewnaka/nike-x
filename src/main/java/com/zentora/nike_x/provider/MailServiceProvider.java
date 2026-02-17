@@ -17,7 +17,7 @@ public class MailServiceProvider {
     private final String API_TOKEN = Env.get("mailersend.api_token"); // Use Env!
 
 
-    private final String FROM_EMAIL = "MS_sq83ir@test-vz9dlem5jq74kj50.mlsender.net";
+    private final String FROM_EMAIL = "MS_254iL2@test-pzkmgq7y1vnl059v.mlsender.net";
     private final String FROM_NAME = "Nike-X";
 
     private ThreadPoolExecutor executor;

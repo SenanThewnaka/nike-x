@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike-X | User Profile</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#0f0f11',
+                        'brand-accent': '#22c55e', // Green-500
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-black text-white antialiased selection:bg-green-500 selection:text-white">
+
+    <!-- Gradient Background -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="gradient-blob top-[-20%] left-[-10%]"></div>
+        <div class="gradient-blob bottom-[-20%] right-[-10%] bg-emerald-600/30 w-[800px] h-[800px]"></div>
+    </div>
+
+    <!-- Header -->
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+    <script src="../assets/js/components/header.js"></script>
+    <script>
+        loadHeader('..');
+    </script>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-28 pb-12 container mx-auto px-6">
+        <div class="grid md:grid-cols-4 gap-8">
+            <!-- Sidebar -->
+            <aside class="md:col-span-1">
+                <div class="glass-panel rounded-3xl p-6 sticky top-28">
+                    <div class="glass-panel rounded-3xl p-6 sticky top-28">
+                        <div class="flex flex-col items-center mb-8">
+                            <div
+                                class="w-24 h-24 rounded-full glass-morphism flex items-center justify-center text-4xl text-green-500 mb-4 border-2 border-green-500/30 relative">
+                                <span id="profile-initials">JD</span>
+                            </div>
+                            <h2 class="text-xl font-bold" id="profile-name-display">John Doe</h2>
+                            <p class="text-gray-400 text-sm" id="profile-joined-date">Member since 2023</p>
+                        </div>
+
+                        <nav class="space-y-2">
+                            <!-- ... unchanged nav items ... -->
+                            <a href="#"
+                                class="block px-4 py-3 rounded-xl bg-green-600/20 text-green-400 font-medium border border-green-500/30 flex items-center gap-3">
+                                <i class="fas fa-user"></i> My Profile
+                            </a>
+                            <a href="orders.html"
+                                class="block px-4 py-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition-all flex items-center gap-3">
+                                <i class="fas fa-box"></i> Orders
+                            </a>
+                            <a href="wishlist.html"
+                                class="block px-4 py-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition-all flex items-center gap-3">
+                                <i class="far fa-heart"></i> Wishlist
+                            </a>
+
+                            <!-- Sign Out handled by Header/JS generally, or can attach ID here too -->
+                        </nav>
+                    </div>
+            </aside>
+
+            <!-- Content Area -->
+            <div class="md:col-span-3">
+                <div class="glass-panel rounded-3xl p-8 slide-up-content">
+                    <h3 class="text-2xl font-bold mb-6 border-b border-white/10 pb-4">Personal Information</h3>
+
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-gray-400 text-sm">First Name</label>
+                                <input type="text" id="profile-first-name"
+                                    class="w-full glass-morphism bg-transparent border-gray-700/50 rounded-xl px-5 py-3 focus:outline-none focus:border-green-500 transition-colors text-white placeholder-gray-600">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-gray-400 text-sm">Last Name</label>
+                                <input type="text" id="profile-last-name"
+                                    class="w-full glass-morphism bg-transparent border-gray-700/50 rounded-xl px-5 py-3 focus:outline-none focus:border-green-500 transition-colors text-white placeholder-gray-600">
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- Email -->
+                            <div class="space-y-2">
+                                <label class="text-gray-400 text-sm">Email Address</label>
+                                <input type="email" id="profile-email" readonly
+                                    class="w-full glass-morphism bg-transparent border-gray-700/50 rounded-xl px-5 py-3 focus:outline-none focus:border-green-500 transition-colors text-white placeholder-gray-600 opacity-60 cursor-not-allowed">
+                            </div>
+
+                            <!-- Mobile Numbers -->
+                            <div class="space-y-3">
+                                <label class="text-gray-400 text-sm flex justify-between items-center">
+                                    Mobile Numbers
+                                    <button type="button" onclick="openModal('add-phone-modal')"
+                                        class="text-xs text-green-500 hover:text-green-400 font-bold flex items-center gap-1 transition-colors">
+                                        <i class="fas fa-plus"></i> Add Number
+                                    </button>
+                                </label>
+                                <div class="grid md:grid-cols-2 gap-4" id="mobile-container">
+                                    <!-- Dynamic content -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <label class="text-gray-400 text-sm">Saved Addresses</label>
+                                <button type="button" onclick="openAddressModal()"
+                                    class="text-xs text-green-500 hover:text-green-400 font-bold flex items-center gap-1 transition-colors">
+                                    <i class="fas fa-plus"></i> Add Address
+                                </button>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-4" id="address-container">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end pt-4">
+                            <button type="submit"
+                                class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-xl transition-all shadow-lg shadow-green-600/30">
+                                Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Phone Number Modal -->
+    <div id="add-phone-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal('add-phone-modal')"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4">
+            <div class="glass-panel rounded-2xl p-6 border border-white/10 shadow-2xl">
+                <h3 class="text-xl font-bold mb-4">Add Mobile Number</h3>
+                <form class="space-y-4">
+                    <div>
+                        <label class="text-gray-400 text-sm block mb-2">Phone Number</label>
+                        <input type="tel" placeholder="+94 7X XXX XXXX"
+                            class="w-full glass-morphism bg-transparent border-gray-700/50 rounded-xl px-5 py-3 focus:outline-none focus:border-green-500 transition-colors text-white placeholder-gray-600">
+                    </div>
+                    <div class="flex justify-end gap-3 pt-2">
+                        <button type="button" onclick="closeModal('add-phone-modal')"
+                            class="px-4 py-2 text-gray-400 hover:text-white transition-colors">Cancel</button>
+                        <button type="submit"
+                            class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-xl transition-all shadow-lg shadow-green-600/30">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Address Modal -->
+    <div id="address-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal('address-modal')"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-lg p-4">
+            <div class="glass-panel rounded-2xl p-6 border border-white/10 shadow-2xl">
+                <h3 class="text-xl font-bold mb-4" id="address-modal-title">Add New Address</h3>
+                <form class="space-y-4" onsubmit="saveAddress(event)">
+                    <input type="hidden" id="addr-id">
+                    <div>
+                        <label class="text-gray-400 text-sm block mb-2">Address Line 1</label>
+                        <input type="text" id="addr-line1" placeholder="e.g., 123 Main Street" required
+                            class="w-full glass-morphism bg-transparent border-gray-700/50 rounded-xl px-5 py-3 focus:outline-none focus:border-green-500 transition-colors text-white placeholder-gray-600">
+                    </div>
+                    <div>
+                        <label class="text-gray-400 text-sm block mb-2">Address Line 2</label>
+                        <input type="text" id="addr-line2" placeholder="e.g., Apartment 4B" required
+                            class="w-full glass-morphism bg-transparent border-gray-700/50 rounded-xl px-5 py-3 focus:outline-none focus:border-green-500 transition-colors text-white placeholder-gray-600">
+                    </div>
+                    <div>
+                        <label class="text-gray-400 text-sm block mb-2">City</label>
+                        <select id="addr-city" required
+                            class="w-full glass-morphism bg-transparent border-gray-700/50 rounded-xl px-5 py-3 focus:outline-none focus:border-green-500 transition-colors text-white placeholder-gray-600 [&>option]:bg-gray-800">
+                            <option value="" disabled selected>Select a City</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-gray-400 text-sm block mb-2">Postal Code</label>
+                        <input type="text" id="addr-postal" placeholder="e.g., 10100" required
+                            class="w-full glass-morphism bg-transparent border-gray-700/50 rounded-xl px-5 py-3 focus:outline-none focus:border-green-500 transition-colors text-white placeholder-gray-600">
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" id="addr-primary"
+                            class="w-5 h-5 rounded border-gray-700 bg-transparent text-green-500 focus:ring-green-500/20">
+                        <label for="addr-primary" class="text-sm text-gray-400">Make this my default address</label>
+                    </div>
+                    <div class="flex justify-end gap-3 pt-2">
+                        <button type="button" onclick="closeModal('address-modal')"
+                            class="px-4 py-2 text-gray-400 hover:text-white transition-colors">Cancel</button>
+                        <button type="submit"
+                            class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-xl transition-all shadow-lg shadow-green-600/30">Save
+                            Address</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <script src="../assets/js/components/footer.js"></script>
+    <script src="../assets/js/notiflix-aio-3.2.8.min.js"></script>
+    <script src="../assets/js/user-profile.js"></script>
+    <script>
+        loadUserProfile();
+        loadCities();
+        loadFooter('..');
+    </script>
+
+    <script>
+        function openModal(modalId, title = null) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('hidden');
+                if (title && modalId === 'address-modal') {
+                    document.getElementById('address-modal-title').innerText = title;
+                } else if (modalId === 'address-modal') {
+                    document.getElementById('address-modal-title').innerText = 'Add New Address';
+                }
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -11,15 +11,49 @@ public class UserDTO implements Serializable {
     private Integer genderId;
     private Integer statusId;
     private String lineOne;
-    private String  lineTwo;
-    private String  postalCode;
-    private int  cityId;
+    private String lineTwo;
+    private String postalCode;
+    private int cityId;
     private String mobile;
     private String verificationCode;
     private String createdAt;
+    private Integer addressId;
+    private String statusName;
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+
+    public Integer getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
+    }
+
     private String newPassword;
     private String confirmPassword;
     private String newEmail;
+    private boolean rememberMe;
+
+    public boolean isRememberMe() {
+        return rememberMe;
+    }
+
+    private boolean makePrimary;
+
+    public boolean isMakePrimary() {
+        return makePrimary;
+    }
+
+    public void setMakePrimary(boolean makePrimary) {
+        this.makePrimary = makePrimary;
+    }
 
     public String getNewEmail() {
         return newEmail;

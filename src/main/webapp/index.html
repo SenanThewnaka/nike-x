@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike-X | Experience the Future</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#0f0f11',
+                        'brand-accent': '#22c55e',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-black text-white antialiased selection:bg-green-500 selection:text-white">
+
+    <!-- Gradient Background Drops -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="gradient-blob top-[-20%] left-[-10%]"></div>
+        <div class="gradient-blob bottom-[-20%] right-[-10%] bg-emerald-600/30 w-[800px] h-[800px]"></div>
+    </div>
+
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+    <script src="assets/js/components/header.js"></script>
+    <script>
+        loadHeader();
+    </script>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-24">
+
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center relative overflow-hidden">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+                <div class="slide-up-content">
+                    <span class="text-green-500 uppercase tracking-widest text-sm font-bold mb-4 block">New Collection
+                        2024</span>
+                    <h1 class="text-6xl md:text-8xl font-bold mb-6 leading-tight">
+                        FUTURE <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">IN
+                            MOTION</span>
+                    </h1>
+                    <p class="text-gray-400 text-lg mb-8 max-w-md">
+                        Experience the next generation of athletic performance. Designed for those who dare to defy
+                        gravity.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#drops"
+                            class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-bold transition-all hover:shadow-[0_0_30px_rgba(34,197,94,0.5)]">
+                            Shop Now
+                        </a>
+                        <a href="#about"
+                            class="glass-panel px-8 py-4 rounded-full font-bold hover:bg-white/5 transition-all">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Floating Shoe/Element Placeholder -->
+                <div class="relative h-[600px] flex items-center justify-center animate-float">
+                    <!-- Glass Card Background -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-tr from-green-500/10 to-emerald-500/10 rounded-full blur-3xl">
+                    </div>
+                    <!-- Replace src with actual shoe image -->
+                    <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/09c5ea6df1bd4be6baaaac5e003e7047_9366/Forum_Low_Shoes_White_FY7756_01_standard.jpg"
+                        alt="Nike-X Hero Shoe"
+                        class="relative z-10 w-full max-w-lg drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] rotate-[-12deg] hover:rotate-[0deg] transition-transform duration-700 filter object-cover rounded-3xl mix-blend-lighten grayscale">
+                    <!-- Note: Added grayscale initially for style, hover to color -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us -->
+        <section id="about" class="py-24 relative">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-4">Redefining <span class="text-green-500">Limits</span></h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">We don't just sell sportswear; we engineer the future of
+                        movement. Our technology adapts to your body, enhancing every stride.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="glass-panel p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300">
+                        <div
+                            class="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center text-green-400 text-2xl mb-6">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Nano-Tech Fabric</h3>
+                        <p class="text-gray-400 text-sm">Self-healing materials that breathe with you and adapt to
+                            environmental temperatures instantly.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="glass-panel p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300">
+                        <div
+                            class="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-400 text-2xl mb-6">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Aero Dynamics</h3>
+                        <p class="text-gray-400 text-sm">Sculpted to cut through air resistance, giving you that
+                            competitive edge in speed.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="glass-panel p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300">
+                        <div
+                            class="w-16 h-16 bg-teal-500/20 rounded-2xl flex items-center justify-center text-teal-400 text-2xl mb-6">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Sustainable Core</h3>
+                        <p class="text-gray-400 text-sm">100% recycled ocean plastics turned into high-performance gear.
+                            Good for you, good for the planet.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Drops -->
+        <section id="drops" class="py-24 bg-gradient-to-b from-transparent to-black/50">
+            <div class="container mx-auto px-6">
+                <div class="flex justify-between items-end mb-12">
+                    <div>
+                        <h2 class="text-4xl font-bold">New <span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">Drops</span>
+                        </h2>
+                        <p class="text-gray-400 mt-2">Fresh from the lab. Limited quantities.</p>
+                    </div>
+                    <a href="advanced-search.html"
+                        class="text-green-500 hover:text-green-400 font-medium flex items-center gap-2">View All <i
+                            class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="new-drops-container">
+                    <!-- Dynamic Content -->
+                </div>
+            </div>
+        </section>
+
+        </div>
+        </section>
+
+        <!-- Brands Section -->
+        <section id="brands" class="py-24 relative">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-20">Our <span class="text-green-500">Partners</span></h2>
+
+                <div class="flex flex-wrap justify-center gap-10 md:gap-20 items-center">
+                    <!-- Nike -->
+                    <div
+                        class="brand-bubble w-32 h-32 md:w-48 md:h-48 glass-panel animate-float float-delay-1 overflow-hidden p-6">
+                        <img src="assets/images/brands/nike.png" alt="Nike"
+                            class="w-full h-full object-contain filter invert">
+                    </div>
+
+                    <!-- Adidas -->
+                    <div
+                        class="brand-bubble w-32 h-32 md:w-48 md:h-48 glass-panel animate-float float-delay-2 overflow-hidden p-6">
+                        <img src="assets/images/brands/adidas.png" alt="Adidas"
+                            class="w-full h-full object-contain filter invert">
+                    </div>
+
+                    <!-- Puma -->
+                    <div
+                        class="brand-bubble w-32 h-32 md:w-48 md:h-48 glass-panel animate-float float-delay-3 overflow-hidden p-6">
+                        <img src="assets/images/brands/puma.png" alt="Puma"
+                            class="w-full h-full object-contain filter invert">
+                    </div>
+
+                    <!-- Vans -->
+                    <div
+                        class="brand-bubble w-24 h-24 md:w-36 md:h-36 glass-panel animate-float float-delay-4 overflow-hidden p-4">
+                        <img src="assets/images/brands/vans.png" alt="Vans"
+                            class="w-full h-full object-contain filter invert">
+                    </div>
+
+                    <!-- Reebok -->
+                    <div
+                        class="brand-bubble w-24 h-24 md:w-36 md:h-36 glass-panel animate-float float-delay-5 overflow-hidden p-2">
+                        <img src="assets/images/brands/reebok.png" alt="Reebok"
+                            class="w-full h-full object-contain filter invert">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us -->
+        <section id="contact" class="py-24">
+            <div class="container mx-auto px-6">
+                <div class="glass-panel rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-green-600/20 blur-[100px] pointer-events-none">
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
+                        <div>
+                            <h2 class="text-4xl font-bold mb-6">Join the <br>Revolution</h2>
+                            <p class="text-gray-400 mb-8">Subscribe to our newsletter for exclusive drops, early access,
+                                and tech updates. Be the first to know.</p>
+
+                            <div class="flex flex-col space-y-4">
+                                <div class="flex items-center space-x-4 text-gray-300">
+                                    <div
+                                        class="w-10 h-10 rounded-full glass-morphism flex items-center justify-center text-green-400">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <span>support@nikex.com</span>
+                                </div>
+                                <div class="flex items-center space-x-4 text-gray-300">
+                                    <div
+                                        class="w-10 h-10 rounded-full glass-morphism flex items-center justify-center text-green-400">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <span>Colombo, Sri Lanka</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form id="contact-form" class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <input type="text" id="contact-first" placeholder="First Name"
+                                    class="w-full glass-morphism bg-transparent border-gray-600 rounded-xl px-5 py-3 focus:outline-none focus:border-green-500 transition-colors text-white placeholder-gray-500">
+                                <input type="text" id="contact-last" placeholder="Last Name"
+                                    class="w-full glass-morphism bg-transparent border-gray-600 rounded-xl px-5 py-3 focus:outline-none focus:border-green-500 transition-colors text-white placeholder-gray-500">
+                            </div>
+                            <input type="email" id="contact-email" placeholder="Email Address"
+                                class="w-full glass-morphism bg-transparent border-gray-600 rounded-xl px-5 py-3 focus:outline-none focus:border-green-500 transition-colors text-white placeholder-gray-500">
+                            <textarea id="contact-message" placeholder="Your Message" rows="4"
+                                class="w-full glass-morphism bg-transparent border-gray-600 rounded-xl px-5 py-3 focus:outline-none focus:border-green-500 transition-colors text-white placeholder-gray-500"></textarea>
+                            <button type="submit"
+                                class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-green-600/30">Send
+                                Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <script src="assets/js/components/footer.js"></script>
+    <script>
+        loadFooter();
+    </script>
+
+
+    <!-- Scripts -->
+    <script src="assets/js/notiflix-aio-3.2.8.min.js"></script>
+    <script src="assets/js/index.js"></script>
+</body>
+
+</html>

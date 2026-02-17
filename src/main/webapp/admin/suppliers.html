@@ -4,19 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nike-X | Order Management</title>
+    <title>Nike-X | Supplier Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@500;700;900&family=Oswald:wght@400;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/script.js"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
-<body class="bg-nike-dark text-white h-screen overflow-hidden font-sans selection:bg-nike-green selection:text-black">
+<body class="bg-black text-white h-screen overflow-hidden font-sans selection:bg-nike-green selection:text-black">
 
-    <div class="flex h-full tech-grid relative">
+    <!-- Gradient Background Drops -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="gradient-blob top-[-20%] left-[-10%]"></div>
+        <div class="gradient-blob bottom-[-20%] right-[-10%] bg-emerald-600/30 w-[800px] h-[800px]"></div>
+    </div>
+
+    <div class="flex h-full tech-grid relative z-10">
 
         <!-- Mobile Sidebar Overlay -->
         <div id="sidebar-overlay" onclick="toggleSidebar()"
@@ -40,7 +45,7 @@
 
             <!-- Navigation -->
             <nav class="flex-1 py-8 px-4 space-y-2 overflow-y-auto">
-                <a href="admin-dashboard.html"
+                <a href="dashboard.html"
                     class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
@@ -51,7 +56,7 @@
                     <span class="font-futuristic text-sm tracking-wide">DASHBOARD</span>
                 </a>
 
-                <a href="admin-products.html"
+                <a href="products.html"
                     class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
@@ -62,9 +67,10 @@
                     <span class="font-futuristic text-sm tracking-wide">PRODUCTS</span>
                 </a>
 
-                <a href="admin-orders.html"
-                    class="flex items-center gap-4 px-4 py-3 bg-nike-green/10 text-nike-green rounded-lg border border-nike-green/20 transition-all group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                <a href="orders.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -72,7 +78,7 @@
                     <span class="font-futuristic text-sm tracking-wide">ORDERS</span>
                 </a>
 
-                <a href="admin-users.html"
+                <a href="users.html"
                     class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
@@ -83,10 +89,9 @@
                     <span class="font-futuristic text-sm tracking-wide">USERS</span>
                 </a>
 
-                <a href="admin-suppliers.html"
-                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                <a href="suppliers.html"
+                    class="flex items-center gap-4 px-4 py-3 bg-nike-green/10 text-nike-green rounded-lg border border-nike-green/20 transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -94,7 +99,7 @@
                     <span class="font-futuristic text-sm tracking-wide">SUPPLIERS</span>
                 </a>
 
-                <a href="admin-grn.html"
+                <a href="grn.html"
                     class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
@@ -145,7 +150,7 @@
 
                 <!-- Search -->
                 <div class="relative flex-1 md:w-96 md:flex-none">
-                    <input type="text" placeholder="Search orders by ID or customer..."
+                    <input type="text" placeholder="Search suppliers..."
                         class="w-full bg-black/20 border border-white/10 rounded-lg py-2 pl-10 pr-4 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-nike-green/50 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-500 absolute left-3 top-3"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -182,151 +187,152 @@
                 <!-- Header -->
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="font-futuristic text-3xl font-bold text-white">Order Management</h1>
-                        <p class="text-zinc-400 text-sm mt-1">Track and update customer orders.</p>
+                        <h1 class="font-futuristic text-3xl font-bold text-white">Supplier Management</h1>
+                        <p class="text-zinc-400 text-sm mt-1">Manage your product suppliers and vendors.</p>
                     </div>
+                    <button onclick="openAddSupplierModal()"
+                        class="bg-nike-green text-black font-bold py-3 px-6 rounded hover:bg-white transition-colors font-futuristic tracking-wider text-sm flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                        ADD SUPPLIER
+                    </button>
                 </div>
 
-                <!-- Orders Table -->
+                <!-- Suppliers Table -->
                 <div class="glass-card-desktop rounded-xl border border-white/5 overflow-hidden">
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-sm text-zinc-400">
                             <thead class="bg-white/5 text-xs uppercase font-futuristic tracking-wider text-white">
                                 <tr>
-                                    <th class="px-6 py-4">Order ID</th>
-                                    <th class="px-6 py-4">Customer</th>
-                                    <th class="px-6 py-4">Date</th>
-                                    <th class="px-6 py-4">Total</th>
+                                    <th class="px-6 py-4">Supplier Name</th>
+                                    <th class="px-6 py-4">Email</th>
+                                    <th class="px-6 py-4">Phone</th>
                                     <th class="px-6 py-4">Status</th>
                                     <th class="px-6 py-4 text-right">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-white/5">
-                                <!-- Order 1 -->
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">#ORD-7829</td>
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center gap-3">
-                                            <div
-                                                class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-xs font-bold text-white border border-white/10">
-                                                AM
-                                            </div>
-                                            <div>
-                                                <p class="text-white">Alex Morgan</p>
-                                                <p class="text-xs text-zinc-500">alex@example.com</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">Oct 24, 2023</td>
-                                    <td class="px-6 py-4 text-white font-medium">$145.00</td>
-                                    <td class="px-6 py-4">
-                                        <select
-                                            class="bg-black/20 border border-white/10 text-nike-green text-xs rounded px-2 py-1 focus:outline-none focus:border-nike-green cursor-pointer">
-                                            <option value="completed" selected>COMPLETED</option>
-                                            <option value="pending">PENDING</option>
-                                            <option value="shipped">SHIPPED</option>
-                                            <option value="cancelled">CANCELLED</option>
-                                        </select>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-zinc-400 hover:text-white p-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                            </svg>
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <!-- Order 2 -->
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">#ORD-7828</td>
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center gap-3">
-                                            <div
-                                                class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-xs font-bold text-white border border-white/10">
-                                                SC
-                                            </div>
-                                            <div>
-                                                <p class="text-white">Sarah Connor</p>
-                                                <p class="text-xs text-zinc-500">sarah@example.com</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">Oct 24, 2023</td>
-                                    <td class="px-6 py-4 text-white font-medium">$110.00</td>
-                                    <td class="px-6 py-4">
-                                        <select
-                                            class="bg-black/20 border border-white/10 text-yellow-500 text-xs rounded px-2 py-1 focus:outline-none focus:border-yellow-500 cursor-pointer">
-                                            <option value="completed">COMPLETED</option>
-                                            <option value="pending" selected>PENDING</option>
-                                            <option value="shipped">SHIPPED</option>
-                                            <option value="cancelled">CANCELLED</option>
-                                        </select>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-zinc-400 hover:text-white p-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                            </svg>
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <!-- Order 3 -->
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">#ORD-7827</td>
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center gap-3">
-                                            <div
-                                                class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-xs font-bold text-white border border-white/10">
-                                                JB
-                                            </div>
-                                            <div>
-                                                <p class="text-white">James Bond</p>
-                                                <p class="text-xs text-zinc-500">007@example.com</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">Oct 23, 2023</td>
-                                    <td class="px-6 py-4 text-white font-medium">$150.00</td>
-                                    <td class="px-6 py-4">
-                                        <select
-                                            class="bg-black/20 border border-white/10 text-blue-500 text-xs rounded px-2 py-1 focus:outline-none focus:border-blue-500 cursor-pointer">
-                                            <option value="completed">COMPLETED</option>
-                                            <option value="pending">PENDING</option>
-                                            <option value="shipped" selected>SHIPPED</option>
-                                            <option value="cancelled">CANCELLED</option>
-                                        </select>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-zinc-400 hover:text-white p-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                            </svg>
-                                        </button>
-                                    </td>
-                                </tr>
+                            <tbody class="divide-y divide-white/5" id="supplier-table-body">
+                                <!-- Populated by JS -->
                             </tbody>
                         </table>
                     </div>
                 </div>
-
             </div>
         </main>
+        <!-- Add Supplier Modal -->
+        <div id="add-supplier-modal" class="fixed inset-0 z-50 hidden">
+            <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeAddSupplierModal()"></div>
+            <div class="absolute inset-y-0 right-0 w-full max-w-xl bg-nike-dark border-l border-white/10 shadow-2xl transform transition-transform duration-300 translate-x-full"
+                id="add-supplier-modal-content">
+                <div class="h-full flex flex-col">
+                    <div class="h-20 flex items-center justify-between px-8 border-b border-white/10 bg-black/20">
+                        <h2 class="font-futuristic text-xl font-bold text-white">Add New Supplier</h2>
+                        <button onclick="closeAddSupplierModal()"
+                            class="text-zinc-400 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex-1 overflow-y-auto p-8 space-y-6">
+                        <form id="add-supplier-form" class="space-y-6">
+                            <div>
+                                <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">COMPANY
+                                    NAME</label>
+                                <input type="text" id="add-supplier-name"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">COMPANY
+                                    NUMBER (LANDLINE)</label>
+                                <input type="text" id="add-supplier-mobile"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">EMAIL
+                                    ADDRESS</label>
+                                <input type="email" id="add-supplier-email"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="p-8 border-t border-white/10 bg-black/20 flex justify-end gap-4">
+                        <button onclick="closeAddSupplierModal()"
+                            class="px-6 py-3 text-sm font-futuristic tracking-wider text-zinc-400 hover:text-white transition-colors">CANCEL</button>
+                        <button onclick="saveNewSupplier()"
+                            class="px-6 py-3 bg-nike-green text-black text-sm font-bold font-futuristic tracking-wider rounded hover:bg-white transition-colors">ADD
+                            SUPPLIER</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Supplier Modal -->
+        <div id="edit-supplier-modal" class="fixed inset-0 z-50 hidden">
+            <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeEditSupplierModal()"></div>
+            <div class="absolute inset-y-0 right-0 w-full max-w-xl bg-nike-dark border-l border-white/10 shadow-2xl transform transition-transform duration-300 translate-x-full"
+                id="edit-supplier-modal-content">
+                <div class="h-full flex flex-col">
+                    <div class="h-20 flex items-center justify-between px-8 border-b border-white/10 bg-black/20">
+                        <h2 class="font-futuristic text-xl font-bold text-white">Edit Supplier</h2>
+                        <button onclick="closeEditSupplierModal()"
+                            class="text-zinc-400 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex-1 overflow-y-auto p-8 space-y-6">
+                        <input type="hidden" id="edit-supplier-id">
+                        <div>
+                            <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">COMPANY
+                                NAME</label>
+                            <input type="text" id="edit-supplier-name"
+                                class="w-full bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">MOBILE
+                                NUMBER</label>
+                            <input type="text" id="edit-supplier-mobile"
+                                class="w-full bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">EMAIL
+                                ADDRESS</label>
+                            <input type="email" id="edit-supplier-email"
+                                class="w-full bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">STATUS</label>
+                            <select id="edit-supplier-status"
+                                class="w-full bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="p-8 border-t border-white/10 bg-black/20 flex justify-end gap-4">
+                        <button onclick="closeEditSupplierModal()"
+                            class="px-6 py-3 text-sm font-futuristic tracking-wider text-zinc-400 hover:text-white transition-colors">CANCEL</button>
+                        <button onclick="saveSupplierChanges()"
+                            class="px-6 py-3 bg-nike-green text-black text-sm font-bold font-futuristic tracking-wider rounded hover:bg-white transition-colors">SAVE
+                            CHANGES</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/notiflix-aio-3.2.8.min.js"></script>
+    <script src="../assets/js/admin-suppliers.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike-X | GRN Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@500;700;900&family=Oswald:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/script.js"></script>
+</head>
+
+<body class="bg-black text-white h-screen overflow-hidden font-sans selection:bg-nike-green selection:text-black">
+
+    <!-- Gradient Background Drops -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="gradient-blob top-[-20%] left-[-10%]"></div>
+        <div class="gradient-blob bottom-[-20%] right-[-10%] bg-emerald-600/30 w-[800px] h-[800px]"></div>
+    </div>
+
+    <div class="flex h-full tech-grid relative z-10">
+
+        <!-- Mobile Sidebar Overlay -->
+        <div id="sidebar-overlay" onclick="toggleSidebar()"
+            class="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 hidden md:hidden"></div>
+
+        <!-- Sidebar -->
+        <aside id="sidebar"
+            class="fixed inset-y-0 left-0 z-50 w-64 glass-card-desktop border-r border-white/5 flex flex-col transform transition-transform duration-300 -translate-x-full md:translate-x-0 md:static md:inset-auto">
+            <!-- Logo -->
+            <div class="h-20 flex items-center px-8 border-b border-white/5">
+                <h2 class="font-futuristic text-2xl font-bold tracking-widest text-white">NIKE<span
+                        class="text-nike-green">-X</span></h2>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 py-8 px-4 space-y-2">
+                <a href="dashboard.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">DASHBOARD</span>
+                </a>
+
+                <a href="products.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">PRODUCTS</span>
+                </a>
+
+                <a href="orders.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">ORDERS</span>
+                </a>
+
+                <a href="users.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">USERS</span>
+                </a>
+
+                <a href="suppliers.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">SUPPLIERS</span>
+                </a>
+
+                <a href="grn.html"
+                    class="flex items-center gap-4 px-4 py-3 bg-nike-green/10 text-nike-green rounded-lg border border-nike-green/20 transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">GRN</span>
+                </a>
+            </nav>
+
+            <!-- User Profile -->
+            <div class="p-4 border-t border-white/5">
+                <div class="flex items-center gap-3 px-4 py-3 bg-white/5 rounded-lg border border-white/5">
+                    <div
+                        class="w-8 h-8 rounded-full bg-nike-green/20 flex items-center justify-center text-nike-green font-bold text-xs border border-nike-green/30">
+                        AD
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-white truncate">Admin User</p>
+                        <p class="text-xs text-zinc-500 truncate">admin@nike-x.com</p>
+                    </div>
+                    <button class="text-zinc-400 hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-hidden relative z-10">
+
+            <!-- Top Bar -->
+            <header
+                class="h-20 glass-card-desktop border-b border-white/5 flex items-center justify-between px-4 md:px-8 gap-4">
+                <!-- Hamburger Menu -->
+                <button onclick="toggleSidebar()" class="md:hidden text-zinc-400 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
+                <!-- Search -->
+                <div class="relative flex-1 md:w-96 md:flex-none">
+                    <input type="text" placeholder="Search GRN records..."
+                        class="w-full bg-black/20 border border-white/10 rounded-lg py-2 pl-10 pr-4 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-nike-green/50 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-500 absolute left-3 top-3"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-4">
+                    <button class="p-2 text-zinc-400 hover:text-white relative">
+                        <div class="absolute top-2 right-2 w-2 h-2 bg-nike-green rounded-full animate-pulse"></div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+                    <button class="p-2 text-zinc-400 hover:text-white hidden md:block">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Scrollable Content -->
+            <div class="flex-1 overflow-y-auto p-8 space-y-8">
+
+                <!-- Header -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="font-futuristic text-3xl font-bold text-white">Goods Received Note (GRN)</h1>
+                        <p class="text-zinc-400 text-sm mt-1">Add new stock inventory from suppliers.</p>
+                    </div>
+                </div>
+
+                <!-- GRN Entry Form -->
+                <div class="glass-card-desktop p-8 rounded-xl border border-white/5">
+                    <form id="grn-form" class="space-y-6" onsubmit="event.preventDefault();">
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Supplier Selection -->
+                            <div>
+                                <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-2">SELECT
+                                    SUPPLIER</label>
+                                <select id="grn-supplier-select"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors cursor-pointer">
+                                    <option value="" disabled selected>Choose a supplier...</option>
+                                    <!-- Populated by JS -->
+                                </select>
+                            </div>
+
+                            <!-- Invoice Number -->
+                            <div>
+                                <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-2">INVOICE
+                                    NUMBER</label>
+                                <input type="text" id="grn-invoice-number" placeholder="Enter Supplier Invoice No"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                            </div>
+                        </div>
+
+                        <hr class="border-white/5 my-6">
+
+                        <!-- Item Entry Section -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Product Selection -->
+                            <div class="md:col-span-1">
+                                <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-2">SELECT
+                                    PRODUCT</label>
+                                <select id="grn-product-select"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors cursor-pointer">
+                                    <option value="" disabled selected>Choose a product...</option>
+                                    <!-- Populated by JS -->
+                                </select>
+                            </div>
+
+                            <!-- Color -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label
+                                        class="block text-xs text-zinc-500 font-futuristic tracking-wider">COLOR</label>
+                                    <button type="button" onclick="promptAddColor()"
+                                        class="text-[10px] text-nike-green hover:text-white transition-colors bg-nike-green/10 px-2 py-0.5 rounded border border-nike-green/20">+
+                                        NEW</button>
+                                </div>
+                                <select id="grn-color-select"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors cursor-pointer">
+                                    <option value="" disabled selected>Choose Color...</option>
+                                    <!-- Populated by JS -->
+                                </select>
+                            </div>
+
+                            <!-- Size -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label
+                                        class="block text-xs text-zinc-500 font-futuristic tracking-wider">SIZE</label>
+                                    <button type="button" onclick="promptAddSize()"
+                                        class="text-[10px] text-nike-green hover:text-white transition-colors bg-nike-green/10 px-2 py-0.5 rounded border border-nike-green/20">+
+                                        NEW</button>
+                                </div>
+                                <select id="grn-size-select"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors cursor-pointer">
+                                    <option value="" disabled selected>Choose Size...</option>
+                                    <!-- Populated by JS -->
+                                </select>
+                            </div>
+
+                            <!-- Quantity -->
+                            <div>
+                                <label
+                                    class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-2">QUANTITY</label>
+                                <input type="number" id="grn-qty-input" placeholder="0"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                            </div>
+
+                            <!-- Buying Price -->
+                            <div>
+                                <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-2">BUYING
+                                    PRICE (Rs.)</label>
+                                <input type="number" id="grn-buying-price-input" placeholder="0.00"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                            </div>
+
+                            <!-- Selling Price -->
+                            <div>
+                                <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-2">SELLING
+                                    PRICE (Rs.)</label>
+                                <input type="number" id="grn-selling-price-input" placeholder="0.00"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                            </div>
+                        </div>
+
+                        <!-- Add Item Button -->
+                        <div class="flex justify-end pt-2">
+                            <button type="button" onclick="addGrnItem()"
+                                class="bg-white/10 text-white font-bold py-2 px-6 rounded hover:bg-white/20 transition-colors font-futuristic tracking-wider text-xs border border-white/10">
+                                + ADD ITEM TO LIST
+                            </button>
+                        </div>
+
+                        <!-- Items Buffer Table -->
+                        <div class="mt-8 border border-white/10 rounded-lg overflow-x-auto bg-black/20">
+                            <table class="w-full text-left text-sm text-zinc-400">
+                                <thead class="bg-white/5 text-xs uppercase font-futuristic tracking-wider text-white">
+                                    <tr>
+                                        <th class="px-6 py-3">Product</th>
+                                        <th class="px-6 py-3">Color</th>
+                                        <th class="px-6 py-3">Size</th>
+                                        <th class="px-6 py-3">Qty</th>
+                                        <th class="px-6 py-3">Buy Price</th>
+                                        <th class="px-6 py-3">Sell Price</th>
+                                        <th class="px-6 py-3">Total</th>
+                                        <th class="px-6 py-3 text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5" id="grn-items-table-body">
+                                    <!-- JS Populated -->
+                                </tbody>
+                                <tfoot class="bg-white/5 font-bold text-white">
+                                    <tr>
+                                        <td colspan="6" class="px-6 py-4 text-right">Total Amount</td>
+                                        <td colspan="2" class="px-6 py-4" id="grn-total-amount">Rs.0.00</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        <!-- Submit Action -->
+                        <div class="pt-4 flex justify-end">
+                            <button type="button" onclick="saveGrn()"
+                                class="bg-nike-green text-black font-bold py-3 px-8 rounded hover:bg-white transition-colors font-futuristic tracking-wider text-sm flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                                SAVE GRN & STOCK
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- GRN Invoices List -->
+                <div class="space-y-6 mt-12">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-futuristic text-xl font-bold text-white">Recent GRN Invoices</h3>
+                        <!-- Optional Filter/Search could go here -->
+                    </div>
+
+                    <div id="grn-list-container" class="space-y-4 min-h-[200px]">
+                        <!-- Populated by admin-grn.js -->
+                        <div class="text-center text-zinc-500 py-10 animate-pulse">Loading Invoices...</div>
+                    </div>
+
+                    <div id="pagination-container" class="flex justify-center items-center gap-4 mt-8"></div>
+                </div>
+
+
+            </div>
+    </div>
+    </div>
+
+    <!-- Existing Edit Modal (Reused for Item Edit) -->
+    <div id="edit-modal" class="fixed inset-0 z-[60] flex items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeEditModal()"></div>
+        <div
+            class="relative bg-zinc-900 border border-white/10 rounded-lg w-full max-w-md p-6 shadow-2xl animate-fade-in-up">
+            <h2 class="text-xl font-futuristic text-white mb-6 uppercase tracking-wider">Edit Item</h2>
+            <input type="hidden" id="edit-item-id">
+            <div class="space-y-4">
+
+                <div>
+                    <label class="block text-zinc-400 text-xs uppercase mb-1">Product</label>
+                    <select id="edit-product-select"
+                        class="w-full bg-white/5 border border-white/10 rounded p-2 text-white focus:outline-none focus:border-nike-green transition-colors">
+                        <!-- Populated JS -->
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-zinc-400 text-xs uppercase mb-1">Color</label>
+                        <select id="edit-color-select"
+                            class="w-full bg-white/5 border border-white/10 rounded p-2 text-white focus:outline-none focus:border-nike-green transition-colors">
+                            <!-- Populated JS -->
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-zinc-400 text-xs uppercase mb-1">Size</label>
+                        <select id="edit-size-select"
+                            class="w-full bg-white/5 border border-white/10 rounded p-2 text-white focus:outline-none focus:border-nike-green transition-colors">
+                            <!-- Populated JS -->
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-zinc-400 text-xs uppercase mb-1">Quantity</label>
+                    <input type="number" id="edit-qty"
+                        class="w-full bg-white/5 border border-white/10 rounded p-2 text-white focus:outline-none focus:border-nike-green transition-colors">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-zinc-400 text-xs uppercase mb-1">Buying Price</label>
+                        <input type="number" step="0.01" id="edit-buying-price"
+                            class="w-full bg-white/5 border border-white/10 rounded p-2 text-white focus:outline-none focus:border-nike-green transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-zinc-400 text-xs uppercase mb-1">Selling Price</label>
+                        <input type="number" step="0.01" id="edit-selling-price"
+                            class="w-full bg-white/5 border border-white/10 rounded p-2 text-white focus:outline-none focus:border-nike-green transition-colors">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end gap-3">
+                <button onclick="closeEditModal()"
+                    class="px-4 py-2 rounded text-zinc-400 hover:text-white transition-colors">Cancel</button>
+                <button onclick="saveEditedItem()"
+                    class="bg-nike-green text-black font-bold px-6 py-2 rounded hover:bg-white transition-colors">Save
+                    Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRN Detail Modal (Invoice View) -->
+    <div id="grn-detail-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-md" onclick="closeGrnDetailModal()"></div>
+        <div
+            class="relative bg-zinc-900 border border-white/10 rounded-2xl w-full max-w-5xl h-[90vh] flex flex-col shadow-2xl overflow-hidden glass-panel">
+
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-white/10 flex justify-between items-center bg-black/40">
+                <div>
+                    <h2 class="text-2xl font-bold font-futuristic text-white flex items-center gap-3">
+                        <i class="fas fa-file-invoice text-nike-green"></i>
+                        GRN Invoice #<span id="detail-grn-id">---</span>
+                    </h2>
+                    <div class="flex flex-wrap gap-4 mt-2 text-sm text-zinc-400">
+                        <span><i class="fas fa-calendar mr-1"></i> <span id="detail-date">...</span></span>
+                        <span class="text-zinc-600">|</span>
+                        <span><i class="fas fa-truck mr-1"></i> <span id="detail-supplier">...</span></span>
+                        <span class="text-zinc-600">|</span>
+                        <span>Ref: <span id="detail-invoice-no" class="font-mono text-white">...</span></span>
+                    </div>
+                </div>
+                <button onclick="closeGrnDetailModal()"
+                    class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/20 flex items-center justify-center text-zinc-400 hover:text-white transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content (Scrollable) -->
+            <div class="flex-1 overflow-y-auto p-6 space-y-8">
+
+                <!-- Items Table -->
+                <div class="rounded-xl border border-white/5 overflow-x-auto bg-black/20">
+                    <table class="w-full text-left text-sm text-zinc-300">
+                        <thead class="bg-white/5 text-xs uppercase text-zinc-500 font-bold tracking-wider">
+                            <tr>
+                                <th class="px-6 py-4">Image</th>
+                                <th class="px-6 py-4">Product</th>
+                                <th class="px-6 py-4">Color</th>
+                                <th class="px-6 py-4">Size</th>
+                                <th class="px-6 py-4">Qty</th>
+                                <th class="px-6 py-4">Buy Price</th>
+                                <th class="px-6 py-4">Sell Price</th>
+                                <th class="px-6 py-4">Total</th>
+                                <th class="px-6 py-4 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="detail-items-body" class="divide-y divide-white/5">
+                            <!-- JS Populated -->
+                        </tbody>
+                        <tfoot class="bg-white/5 font-bold text-white text-base">
+                            <tr>
+                                <td colspan="6" class="px-6 py-4 text-right">Grand Total:</td>
+                                <td class="px-6 py-4 text-nike-green" id="detail-grand-total">Rs.0.00</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <!-- Add New Item Section (Moved from Main Page) -->
+                <div class="bg-white/5 p-6 rounded-xl border border-white/10">
+                    <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-plus-circle text-nike-green"></i> Add Item to This Invoice
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
+                        <div class="md:col-span-1">
+                            <label class="block text-zinc-500 text-[10px] uppercase mb-1">Product</label>
+                            <select id="add-item-product"
+                                class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-sm focus:border-nike-green outline-none hover:bg-black/60 transition-colors"></select>
+                        </div>
+                        <div>
+                            <label class="block text-zinc-500 text-[10px] uppercase mb-1">Color</label>
+                            <select id="add-item-color"
+                                class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-sm focus:border-nike-green outline-none hover:bg-black/60 transition-colors"></select>
+                        </div>
+                        <div>
+                            <label class="block text-zinc-500 text-[10px] uppercase mb-1">Size</label>
+                            <select id="add-item-size"
+                                class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-sm focus:border-nike-green outline-none hover:bg-black/60 transition-colors"></select>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 md:col-span-2 lg:col-span-2 xl:col-span-1">
+                            <div>
+                                <label class="block text-zinc-500 text-[10px] uppercase mb-1">Qty</label>
+                                <input type="number" id="add-item-qty" placeholder="0"
+                                    class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-sm focus:border-nike-green outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-zinc-500 text-[10px] uppercase mb-1">Buy Rs.</label>
+                                <input type="number" id="add-item-buy" placeholder="0.00"
+                                    class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-sm focus:border-nike-green outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-zinc-500 text-[10px] uppercase mb-1">Sell Rs.</label>
+                                <input type="number" id="add-item-sell" placeholder="0.00"
+                                    class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-sm focus:border-nike-green outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <button onclick="addItemToGrn()"
+                                class="w-full bg-nike-green hover:bg-green-400 text-black font-bold py-2 rounded transition-colors shadow-lg shadow-green-500/20">
+                                Add Item
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delete Zone -->
+                <div class="border-t border-white/10 pt-6 flex justify-between items-center">
+                    <div class="text-xs text-zinc-500">
+                        <span class="text-red-500 font-bold">DANGER ZONE:</span> Deleting this invoice will remove all
+                        unsold stock. Restricted if sales exist.
+                    </div>
+                    <button onclick="deleteCurrentGrn()"
+                        class="text-xs font-bold text-red-500 border border-red-500/30 hover:bg-red-500 hover:text-white px-4 py-2 rounded transition-colors uppercase tracking-wider">
+                        Delete Invoice
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/notiflix-aio-3.2.8.min.js"></script>
+    <script src="../assets/js/admin-grn.js"></script>
+</body>
+
+</html>

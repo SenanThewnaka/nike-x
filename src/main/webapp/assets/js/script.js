@@ -98,3 +98,5 @@ function toggleSidebar() {
         }
     }
 }
+
+// Admin Authentication Check - REMOVED per user request (Handled by Filters)

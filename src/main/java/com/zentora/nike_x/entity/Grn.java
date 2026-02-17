@@ -21,6 +21,9 @@ public class Grn {
     @JoinColumn(name = "seller_id", nullable = false)
     private Seller seller;
 
+    @Column(name = "supplier_invoice_number")
+    private String supplierInvoiceNumber;
+
     public Grn() {
     }
 
@@ -46,5 +49,13 @@ public class Grn {
 
     public void setSeller(Seller seller) {
         this.seller = seller;
+    }
+
+    public String getSupplierInvoiceNumber() {
+        return supplierInvoiceNumber;
+    }
+
+    public void setSupplierInvoiceNumber(String supplierInvoiceNumber) {
+        this.supplierInvoiceNumber = supplierInvoiceNumber;
     }
 }

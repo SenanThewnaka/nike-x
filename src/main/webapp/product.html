@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike-X | Product Details</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="assets/js/notiflix-aio-3.2.8.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#0f0f11',
+                        'brand-accent': '#22c55e', // Green-500
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-black text-white antialiased selection:bg-green-500 selection:text-white">
+
+    <!-- Gradient Background -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="gradient-blob top-[-20%] left-[-10%]"></div>
+        <div class="gradient-blob bottom-[-20%] right-[-10%] bg-emerald-600/30 w-[800px] h-[800px]"></div>
+    </div>
+
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+    <script src="assets/js/components/header.js"></script>
+    <script>
+        loadHeader();
+    </script>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-32 pb-12 container mx-auto px-6">
+
+        <!-- Breadcrumb -->
+        <nav class="flex mb-8" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3 text-sm text-gray-400">
+                <li class="inline-flex items-center">
+                    <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i class="fas fa-chevron-right text-xs mx-2"></i>
+                        <a href="advanced-search.html" class="hover:text-white transition-colors">Products</a>
+                    </div>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <i class="fas fa-chevron-right text-xs mx-2"></i>
+                        <span class="text-green-500 font-medium" id="breadcrumb-name"></span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Product Details Grid -->
+        <div class="grid md:grid-cols-2 gap-12 mb-24">
+
+            <!-- Gallery Section -->
+            <div class="space-y-4">
+                <!-- Main Image -->
+                <div
+                    class="glass-panel rounded-3xl p-8 h-[500px] flex items-center justify-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-gray-800/50 to-transparent"></div>
+                    <img src="" id="main-image" alt="Product Image"
+                        class="w-3/4 h-auto object-contain rounded-3xl drop-shadow-2xl z-10 group-hover:scale-105 transition-transform duration-500 transition-opacity">
+                    <button id="main-wishlist-btn" onclick="addToWishlistMain()" style="display: none;"
+                        class="absolute top-6 right-6 z-20 w-10 h-10 rounded-full bg-black/40 backdrop-blur text-white flex items-center justify-center hover:bg-green-500 hover:text-black transition-colors">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <!-- Thumbnails -->
+                <div class="grid grid-cols-4 gap-4" id="thumbnail-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <div class="glass-panel rounded-3xl p-8 relative">
+                <!-- Product Tag -->
+                <span id="product-tag"
+                    class="bg-green-600/20 text-green-500 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block"></span>
+
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight" id="product-name"></h1>
+
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="text-3xl font-bold text-green-400" id="product-price"></span>
+                    <div class="flex items-center text-yellow-400 text-sm" id="header-rating-stars">
+                        <!-- Populated by JS -->
+                        <span class="text-gray-400 ml-2" id="review-count-display"></span>
+                    </div>
+                </div>
+
+                <p class="text-gray-400 leading-relaxed mb-8" id="product-desc">
+                </p>
+
+                <div class="space-y-6 mb-8">
+                    <!-- Color Selector -->
+                    <!-- Color Selector -->
+                    <div>
+                        <h3 class="text-sm font-bold text-gray-300 mb-3 uppercase tracking-wider">Select Color</h3>
+                        <div class="flex gap-3" id="color-container">
+                            <!-- JS populated -->
+                        </div>
+                    </div>
+
+                    <!-- Size Selector -->
+                    <!-- Size Selector -->
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-sm font-bold text-gray-300 uppercase tracking-wider">Select Size</h3>
+                            <button class="text-xs text-green-500 hover:text-white transition-colors">Size
+                                Guide</button>
+                        </div>
+                        <div class="grid grid-cols-4 sm:grid-cols-6 gap-2" id="size-container">
+                            <!-- JS populated -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-white/10">
+                    <div class="flex items-center glass-morphism rounded-xl px-4 py-2 border border-gray-700/50">
+                        <button class="text-gray-400 hover:text-white transition-colors" onclick="updateQty(-1)"><i
+                                class="fas fa-minus"></i></button>
+                        <input type="number" value="1" id="qty-input"
+                            class="bg-transparent w-12 text-center text-white focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            readonly>
+                        <button class="text-gray-400 hover:text-white transition-colors" onclick="updateQty(1)"><i
+                                class="fas fa-plus"></i></button>
+                    </div>
+                    <button onclick="addToCart()"
+                        class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-xl transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.5)] flex items-center justify-center gap-2">
+                        <i class="fas fa-shopping-bag"></i> Add to Cart
+                    </button>
+                    <button onclick="buyNow()"
+                        class="flex-1 bg-white hover:bg-gray-200 text-black font-bold py-3 px-8 rounded-xl transition-all flex items-center justify-center gap-2">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+
+                <!-- Features Preview -->
+                <div class="grid grid-cols-2 gap-4 mt-8 pt-6 border-t border-white/10 text-xs text-gray-400">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-truck text-green-500"></i> Free Delivery
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-undo text-green-500"></i> 30-Day Returns
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-shield-alt text-green-500"></i> 2-Year Warranty
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-check-circle text-green-500"></i> Authentic Gear
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <section class="mb-24" id="reviews-section">
+            <h2 class="text-2xl font-bold mb-8">Ratings & <span class="text-green-500">Reviews</span></h2>
+
+            <div class="grid md:grid-cols-12 gap-12">
+                <!-- Rating Summary -->
+                <div class="md:col-span-4 glass-panel rounded-3xl p-8 h-fit h-full" id="rating-summary-container">
+                    <div class="text-center text-gray-500 py-10"></div>
+                </div>
+
+                <!-- Review List -->
+                <div class="md:col-span-8 space-y-6">
+                    <div id="reviews-list-container">
+                        <!-- Dynamic Reviews -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Write Review Modal -->
+        <div id="review-modal" class="fixed inset-0 z-50 hidden">
+            <!-- Backdrop -->
+            <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeReviewModal()"></div>
+
+            <!-- Modal Content -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg p-6">
+                <div class="glass-panel rounded-3xl p-8 relative border border-gray-700 shadow-2xl">
+                    <button onclick="closeReviewModal()"
+                        class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+
+                    <h3 class="text-2xl font-bold mb-6">Write a <span class="text-green-500">Review</span></h3>
+
+                    <form id="review-form" onsubmit="submitReview(event)">
+                        <!-- Star Rating -->
+                        <div class="mb-6">
+                            <label class="block text-sm text-gray-400 mb-2">Your Rating</label>
+                            <div class="flex gap-2 text-2xl text-gray-600" id="star-rating-input">
+                                <i class="fas fa-star cursor-pointer hover:text-yellow-400 transition-colors"
+                                    onclick="setRating(1)"></i>
+                                <i class="fas fa-star cursor-pointer hover:text-yellow-400 transition-colors"
+                                    onclick="setRating(2)"></i>
+                                <i class="fas fa-star cursor-pointer hover:text-yellow-400 transition-colors"
+                                    onclick="setRating(3)"></i>
+                                <i class="fas fa-star cursor-pointer hover:text-yellow-400 transition-colors"
+                                    onclick="setRating(4)"></i>
+                                <i class="fas fa-star cursor-pointer hover:text-yellow-400 transition-colors"
+                                    onclick="setRating(5)"></i>
+                            </div>
+                            <input type="hidden" id="rating-value" required>
+                        </div>
+
+                        <!-- Review Text -->
+                        <div class="mb-6">
+                            <label class="block text-sm text-gray-400 mb-2">Your Review</label>
+                            <textarea id="review-text" rows="4"
+                                class="w-full bg-black/50 border border-gray-700 rounded-xl p-4 text-white focus:outline-none focus:border-green-500 transition-colors"
+                                placeholder="Tell us what you liked or didn't like..." required></textarea>
+                        </div>
+
+                        <!-- Image Upload -->
+                        <div class="mb-8">
+                            <label class="block text-sm text-gray-400 mb-2">Add Photos (Optional)</label>
+                            <div class="relative">
+                                <input type="file" id="review-images" multiple accept="image/*" class="hidden"
+                                    onchange="previewImages(this)">
+                                <label for="review-images"
+                                    class="flex flex-col items-center justify-center h-32 border-2 border-dashed border-gray-700 rounded-xl cursor-pointer hover:border-green-500 hover:bg-white/5 transition-all">
+                                    <i class="fas fa-cloud-upload-alt text-2xl text-gray-500 mb-2"></i>
+                                    <span class="text-xs text-gray-500">Click to upload images</span>
+                                </label>
+                            </div>
+                            <div id="image-preview-container" class="flex gap-2 mt-4 overflow-x-auto pb-2"></div>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)]">
+                            Submit Review
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <section>
+            <div class="flex justify-between items-end mb-8">
+                <h2 class="text-2xl font-bold">You May Also <span class="text-green-500">Like</span></h2>
+                <a href="advanced-search.html" class="text-gray-400 hover:text-white text-sm transition-colors">View
+                    All</a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="related-products-container">
+                <!-- JS Populated -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <script src="assets/js/components/footer.js"></script>
+    <script src="assets/js/product.js?v=4"></script>
+    <script>
+        loadFooter();
+    </script>
+</body>
+
+</html>

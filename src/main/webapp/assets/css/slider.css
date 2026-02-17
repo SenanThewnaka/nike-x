@@ -1,0 +1,45 @@
+/* Dual Range Slider */
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    pointer-events: auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #22c55e;
+    cursor: pointer;
+    border: 2px solid #000;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+    margin-top: -6px;
+    /* Adjust based on track height if needed, but here inputs are absolute */
+}
+
+/* For Firefox */
+input[type=range]::-moz-range-thumb {
+    pointer-events: auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #22c55e;
+    cursor: pointer;
+    border: 2px solid #000;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+/* Reset default appearance to allow stacking */
+input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    /* Track is handled by the div behind */
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}

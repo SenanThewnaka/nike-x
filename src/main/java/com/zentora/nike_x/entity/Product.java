@@ -28,6 +28,10 @@ public class Product {
     @JoinColumn(name = "gender_id", nullable = false)
     private Gender gender;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "status_id", nullable = false)
+    private Status status;
+
     public Product() {
     }
 
@@ -77,5 +81,13 @@ public class Product {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

@@ -23,8 +23,23 @@ public class Address {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city_id", nullable = false)
+    private City city;
+
     @Column(name = "is_primary")
     private Byte isPrimary;
+
+    @Column(name = "deleted", nullable = false)
+    private Boolean deleted = false;
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
 
     public Address() {
     }
@@ -67,6 +82,14 @@ public class Address {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 
     public Byte getIsPrimary() {

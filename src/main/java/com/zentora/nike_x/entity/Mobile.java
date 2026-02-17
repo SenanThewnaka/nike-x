@@ -17,6 +17,17 @@ public class Mobile {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Column(name = "deleted", nullable = false)
+    private Boolean deleted = false;
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public Mobile() {
     }
 

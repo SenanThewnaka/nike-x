@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "model")
+@NamedQueries({
+        @NamedQuery(name = "Model.findByName", query = "SELECT m FROM Model m WHERE lower(m.name) = lower(:name)")
+})
 public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

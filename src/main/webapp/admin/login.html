@@ -10,16 +10,16 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@500;700;900&family=Oswald:wght@400;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/script.js"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/script.js"></script>
 </head>
 
 <body
-    class="bg-nike-dark text-white h-screen overflow-hidden flex selection:bg-nike-green selection:text-black font-sans relative">
+    class="bg-black text-white h-screen overflow-hidden flex selection:bg-nike-green selection:text-black font-sans relative">
 
     <!-- Mobile Background (Visible only on small screens) -->
     <div class="absolute inset-0 lg:hidden z-0">
-        <img src="assets/images/bg.png" class="w-full h-full object-cover">
+        <img src="../assets/images/bg.png" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-black/60"></div>
     </div>
 
@@ -27,7 +27,7 @@
     <div class="hidden lg:block w-[60%] h-full relative overflow-hidden bg-black">
         <!-- Background Image with Zoom Effect -->
         <div class="absolute inset-0 z-0">
-            <img src="assets/images/bg.png" alt="Nike-X Showcase"
+            <img src="../assets/images/bg.png" alt="Nike-X Showcase"
                 class="w-full h-full object-cover animate-zoom-slow opacity-80">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/20 mix-blend-multiply">
             </div>
@@ -154,37 +154,37 @@
                     </button>
                 </div>
 
-                <!-- Actions -->
-                <div class="flex items-center justify-between pt-2">
-                    <label class="flex items-center space-x-2 cursor-pointer group">
-                        <div class="relative">
-                            <input type="checkbox" class="peer sr-only">
-                            <div
-                                class="w-4 h-4 border border-zinc-600 rounded bg-transparent peer-checked:bg-nike-green peer-checked:border-nike-green transition-all">
-                            </div>
-                            <svg class="w-3 h-3 text-black absolute top-0.5 left-0.5 opacity-0 peer-checked:opacity-100 transition-opacity"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                        </div>
-                        <span
-                            class="text-xs text-zinc-400 group-hover:text-zinc-300 transition-colors font-futuristic tracking-wider">REMEMBER
-                            DEVICE</span>
+                <!-- Verification Code Input (Hidden Initially) -->
+                <div id="verification-section" class="group relative hidden animate-fade-in-up">
+                    <input type="text" id="verificationCode" maxlength="6"
+                        class="peer w-full bg-transparent border-b border-zinc-600 lg:border-zinc-700 py-3 text-white placeholder-transparent focus:border-nike-green focus:outline-none transition-colors duration-300 tracking-[1em] text-center font-futuristic text-xl"
+                        placeholder="000000">
+                    <label for="verificationCode"
+                        class="absolute left-0 -top-3.5 text-xs text-zinc-400 lg:text-zinc-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-nike-green font-futuristic tracking-wide w-full text-center lg:text-left">
+                        VERIFICATION CODE
                     </label>
-                    <a href="#"
-                        class="text-xs text-zinc-400 hover:text-nike-green transition-colors font-futuristic tracking-wider">RESET
-                        ACCESS?</a>
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit"
+                <button type="button" id="sendEmailBtn" onclick="sendCode()"
                     class="w-full bg-white text-black font-bold py-4 rounded-none hover:bg-nike-green transition-all duration-300 font-futuristic tracking-widest text-sm flex items-center justify-center gap-2 group mt-8 lg:rounded-sm">
-                    AUTHENTICATE
+                    SEND EMAIL
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </button>
+
+                <button type="button" id="signInBtn" onclick="signIn()"
+                    class="hidden w-full bg-white text-black font-bold py-4 rounded-none hover:bg-nike-green transition-all duration-300 font-futuristic tracking-widest text-sm flex items-center justify-center gap-2 group mt-8 lg:rounded-sm">
+                    SIGN IN
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                 </button>
 
@@ -200,6 +200,8 @@
         </div>
     </div>
 
+    <script src="../assets/js/notiflix-aio-3.2.8.min.js"></script>
+    <script src="../assets/js/admin-login.js"></script>
 </body>
 
 </html>

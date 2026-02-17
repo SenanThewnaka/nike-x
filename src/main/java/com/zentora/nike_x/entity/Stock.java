@@ -42,6 +42,10 @@ public class Stock {
     private Color color;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "size_id", nullable = false)
+    private Size size;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "grn_id", nullable = false)
     private Grn grn;
 
@@ -118,6 +122,14 @@ public class Stock {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
     }
 
     public Grn getGrn() {

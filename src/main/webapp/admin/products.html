@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike-X | Product Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@500;700;900&family=Oswald:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/admin-products.js" defer></script>
+    <script src="../assets/js/notiflix-aio-3.2.8.min.js"></script>
+</head>
+
+<body class="bg-black text-white h-screen overflow-hidden font-sans selection:bg-nike-green selection:text-black">
+
+    <!-- Gradient Background Drops -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="gradient-blob top-[-20%] left-[-10%]"></div>
+        <div class="gradient-blob bottom-[-20%] right-[-10%] bg-emerald-600/30 w-[800px] h-[800px]"></div>
+    </div>
+
+    <div class="flex h-full tech-grid relative z-10">
+
+        <!-- Mobile Sidebar Overlay -->
+        <div id="sidebar-overlay" onclick="toggleSidebar()"
+            class="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 hidden md:hidden"></div>
+
+        <!-- Sidebar -->
+        <aside id="sidebar"
+            class="fixed inset-y-0 left-0 z-50 w-64 glass-card-desktop border-r border-white/5 flex flex-col transform transition-transform duration-300 -translate-x-full md:translate-x-0 md:static md:inset-auto">
+            <!-- Logo -->
+            <div class="h-20 flex items-center justify-between px-8 border-b border-white/5">
+                <h2 class="font-futuristic text-2xl font-bold tracking-widest text-white">NIKE<span
+                        class="text-nike-green">-X</span></h2>
+                <button onclick="toggleSidebar()" class="md:hidden text-zinc-400 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 py-8 px-4 space-y-2 overflow-y-auto">
+                <a href="dashboard.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">DASHBOARD</span>
+                </a>
+
+                <a href="products.html"
+                    class="flex items-center gap-4 px-4 py-3 bg-nike-green/10 text-nike-green rounded-lg border border-nike-green/20 transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">PRODUCTS</span>
+                </a>
+
+                <a href="orders.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">ORDERS</span>
+                </a>
+
+                <a href="users.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">USERS</span>
+                </a>
+
+                <a href="suppliers.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">SUPPLIERS</span>
+                </a>
+
+                <a href="grn.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                    </svg>
+                    <span class="font-futuristic text-sm tracking-wide">GRN</span>
+                </a>
+            </nav>
+
+            <!-- User Profile -->
+            <div class="p-4 border-t border-white/5">
+                <div class="flex items-center gap-3 px-4 py-3 bg-white/5 rounded-lg border border-white/5">
+                    <div
+                        class="w-8 h-8 rounded-full bg-nike-green/20 flex items-center justify-center text-nike-green font-bold text-xs border border-nike-green/30">
+                        AD
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-white truncate">Admin User</p>
+                        <p class="text-xs text-zinc-500 truncate">admin@nike-x.com</p>
+                    </div>
+                    <button class="text-zinc-400 hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-hidden relative z-10">
+
+            <!-- Top Bar -->
+            <header
+                class="h-20 glass-card-desktop border-b border-white/5 flex items-center justify-between px-4 md:px-8 gap-4">
+                <!-- Hamburger Menu -->
+                <button onclick="toggleSidebar()" class="md:hidden text-zinc-400 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
+                <!-- Search -->
+                <div class="relative flex-1 md:w-96 md:flex-none">
+                    <input type="text" placeholder="Search products..."
+                        class="w-full bg-black/20 border border-white/10 rounded-lg py-2 pl-10 pr-4 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-nike-green/50 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-500 absolute left-3 top-3"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-4">
+                    <button class="p-2 text-zinc-400 hover:text-white relative">
+                        <div class="absolute top-2 right-2 w-2 h-2 bg-nike-green rounded-full animate-pulse"></div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+                    <button class="p-2 text-zinc-400 hover:text-white hidden md:block">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Scrollable Content -->
+            <div class="flex-1 overflow-y-auto p-8 space-y-8">
+
+                <!-- Header -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="font-futuristic text-3xl font-bold text-white">Product Inventory</h1>
+                        <p class="text-zinc-400 text-sm mt-1">Manage your product catalog and stock levels.</p>
+                    </div>
+                    <button onclick="openAddProductModal()"
+                        class="bg-nike-green text-black font-bold py-3 px-6 rounded hover:bg-white transition-colors font-futuristic tracking-wider text-sm flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                        ADD PRODUCT
+                    </button>
+                </div>
+
+                <!-- Products Table -->
+                <div class="glass-card-desktop rounded-xl border border-white/5 overflow-hidden">
+                    <div class="overflow-x-auto rounded-t-xl bg-black/20">
+                        <table class="w-full text-left text-sm text-zinc-400">
+                            <thead class="bg-white/5 text-xs uppercase font-futuristic tracking-wider text-white">
+                                <tr>
+                                    <th class="px-6 py-4">Product</th>
+                                    <th class="px-6 py-4">Brand</th>
+                                    <th class="px-6 py-4">Model</th>
+                                    <th class="px-6 py-4">Stock</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5" id="product-table-body">
+                                <!-- Products loaded via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Pagination -->
+                    <div id="pagination-container"
+                        class="p-4 bg-black/20 border-t border-white/5 rounded-b-xl flex justify-center">
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div id="product-modal" class="fixed inset-0 z-50 hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeProductModal()"></div>
+
+        <!-- Modal Content -->
+        <div class="absolute inset-y-0 right-0 w-full max-w-2xl bg-nike-dark border-l border-white/10 shadow-2xl transform transition-transform duration-300 translate-x-full"
+            id="product-modal-content">
+            <div class="h-full flex flex-col">
+                <!-- Header -->
+                <div class="h-20 flex items-center justify-between px-8 border-b border-white/10 bg-black/20">
+                    <h2 class="font-futuristic text-xl font-bold text-white">Product Details</h2>
+                    <button onclick="closeProductModal()" class="text-zinc-400 hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Scrollable Body -->
+                <div class="flex-1 overflow-y-auto p-8 space-y-8">
+                    <input type="hidden" id="edit-product-id">
+
+                    <!-- Product Info -->
+                    <div class="flex flex-col gap-6">
+                        <!-- Images Grid -->
+                        <div>
+                            <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-2">PRODUCT
+                                IMAGES</label>
+                            <div class="grid grid-cols-4 gap-4" id="edit-product-images-container">
+                                <!-- Images will be populated here -->
+                            </div>
+                            <input type="file" id="add-product-image-input" class="hidden" accept="image/*" multiple
+                                onchange="addProductImage(this)">
+                            <button onclick="document.getElementById('add-product-image-input').click()"
+                                class="mt-4 px-4 py-2 bg-white/5 border border-white/10 rounded text-xs font-futuristic text-white hover:bg-white/10 transition-colors">
+                                + ADD IMAGES
+                            </button>
+                        </div>
+
+                        <!-- Fields -->
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">PRODUCT
+                                    NAME</label>
+                                <input type="text" id="edit-product-name"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">DESCRIPTION</label>
+                                <textarea rows="3" id="edit-product-description"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-sm focus:border-nike-green focus:outline-none transition-colors"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Details -->
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">BRAND</label>
+                            <input type="text" id="edit-product-brand" readonly
+                                class="w-full bg-black/40 border border-white/5 rounded px-3 py-2 text-zinc-400 text-sm cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">MODEL</label>
+                            <input type="text" id="edit-product-model"
+                                class="w-full bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                        </div>
+                    </div>
+
+                    <!-- Status -->
+                    <div>
+                        <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">STATUS</label>
+                        <select id="edit-product-status"
+                            class="w-full bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- Footer Actions -->
+                <div class="p-8 border-t border-white/10 bg-black/20 flex justify-end gap-4">
+                    <button onclick="openStockManagementModal()"
+                        class="px-6 py-3 bg-zinc-700 text-white text-sm font-bold font-futuristic tracking-wider rounded hover:bg-zinc-600 transition-colors mr-auto">
+                        MANAGE STOCKS
+                    </button>
+                    <button onclick="closeProductModal()"
+                        class="px-6 py-3 text-sm font-futuristic tracking-wider text-zinc-400 hover:text-white transition-colors">CANCEL</button>
+                    <button onclick="saveProductChanges()"
+                        class="px-6 py-3 bg-nike-green text-black text-sm font-bold font-futuristic tracking-wider rounded hover:bg-white transition-colors">SAVE
+                        CHANGES</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="add-product-modal" class="fixed inset-0 z-50 hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeAddProductModal()"></div>
+
+        <!-- Modal Content -->
+        <div class="absolute inset-y-0 right-0 w-full max-w-2xl bg-nike-dark border-l border-white/10 shadow-2xl transform transition-transform duration-300 translate-x-full"
+            id="add-product-modal-content">
+            <div class="h-full flex flex-col">
+                <!-- Header -->
+                <div class="h-20 flex items-center justify-between px-8 border-b border-white/10 bg-black/20">
+                    <h2 class="font-futuristic text-xl font-bold text-white">Add New Product</h2>
+                    <button onclick="closeAddProductModal()" class="text-zinc-400 hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Scrollable Body -->
+                <div class="flex-1 overflow-y-auto p-8 space-y-8">
+                    <form id="add-product-form" class="space-y-6" onsubmit="event.preventDefault();">
+
+                        <!-- Image Upload -->
+                        <div>
+                            <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-2">PRODUCT
+                                IMAGES</label>
+                            <div class="grid grid-cols-4 gap-4" id="image-preview-container">
+                                <!-- Upload Button -->
+                                <label
+                                    class="aspect-square rounded-lg bg-black/20 border border-dashed border-white/20 flex flex-col items-center justify-center cursor-pointer hover:border-nike-green/50 hover:bg-nike-green/5 transition-all group">
+                                    <input type="file" multiple accept="image/*" class="hidden"
+                                        onchange="handleImageUpload(this)">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6 text-zinc-500 group-hover:text-nike-green transition-colors mb-2"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 4v16m8-8H4" />
+                                    </svg>
+                                    <span
+                                        class="text-[10px] text-zinc-500 group-hover:text-nike-green font-futuristic tracking-wider">ADD
+                                        IMAGES</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Basic Info -->
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">PRODUCT
+                                    NAME</label>
+                                <input type="text" id="product-name" placeholder="e.g. Nike Air Max Pulse"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                            </div>
+
+                            <div>
+                                <label
+                                    class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">DESCRIPTION</label>
+                                <textarea rows="4" id="product-description" placeholder="Enter product description..."
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Brand & Model -->
+                        <div class="grid grid-cols-2 gap-6">
+                            <!-- Brand Selection -->
+                            <div>
+                                <label
+                                    class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">BRAND</label>
+                                <div class="space-y-2">
+                                    <select id="brand-select" onchange="toggleNewBrandInput(this)"
+                                        class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors cursor-pointer">
+                                        <option value="" disabled selected>Select Brand</option>
+                                        <option value="Nike">Nike</option>
+                                        <option value="Jordan">Jordan</option>
+                                        <option value="Converse">Converse</option>
+                                        <option value="new">+ Add New Brand</option>
+                                    </select>
+                                    <input type="text" id="new-brand-input" placeholder="Enter new brand name"
+                                        class="hidden w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors animate-fade-in-up">
+                                </div>
+                            </div>
+
+                            <!-- Model -->
+                            <div>
+                                <label
+                                    class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">MODEL</label>
+                                <input type="text" id="product-model" placeholder="e.g. Air Max"
+                                    class="w-full bg-black/20 border border-white/10 rounded px-4 py-3 text-white text-sm focus:border-nike-green focus:outline-none transition-colors">
+                            </div>
+                        </div>
+
+                        <!-- Gender -->
+                        <div>
+                            <label
+                                class="block text-xs text-zinc-500 font-futuristic tracking-wider mb-1">GENDER</label>
+                            <div class="grid grid-cols-3 gap-4">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="gender" value="Male" class="peer hidden">
+                                    <div
+                                        class="px-4 py-3 rounded bg-black/20 border border-white/10 text-center text-sm text-zinc-400 peer-checked:bg-nike-green/10 peer-checked:text-nike-green peer-checked:border-nike-green transition-all hover:bg-white/5">
+                                        MEN
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="gender" value="Female" class="peer hidden">
+                                    <div
+                                        class="px-4 py-3 rounded bg-black/20 border border-white/10 text-center text-sm text-zinc-400 peer-checked:bg-nike-green/10 peer-checked:text-nike-green peer-checked:border-nike-green transition-all hover:bg-white/5">
+                                        WOMEN
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="gender" value="Unisex" class="peer hidden">
+                                    <div
+                                        class="px-4 py-3 rounded bg-black/20 border border-white/10 text-center text-sm text-zinc-400 peer-checked:bg-nike-green/10 peer-checked:text-nike-green peer-checked:border-nike-green transition-all hover:bg-white/5">
+                                        UNISEX
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- Footer Actions -->
+                <div class="p-8 border-t border-white/10 bg-black/20 flex justify-end gap-4">
+                    <button onclick="closeAddProductModal()"
+                        class="px-6 py-3 text-sm font-futuristic tracking-wider text-zinc-400 hover:text-white transition-colors">CANCEL</button>
+                    <button onclick="saveNewProduct()"
+                        class="px-6 py-3 bg-nike-green text-black text-sm font-bold font-futuristic tracking-wider rounded hover:bg-white transition-colors">CREATE
+                        PRODUCT</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Stock Management Modal -->
+    <div id="stock-modal" class="fixed inset-0 z-[60] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeStockManagementModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div
+                class="bg-nike-dark w-full max-w-5xl rounded-2xl border border-white/10 shadow-2xl flex flex-col max-h-[90vh]">
+                <!-- Header -->
+                <div
+                    class="h-20 flex items-center justify-between px-8 border-b border-white/10 bg-black/20 rounded-t-2xl">
+                    <h2 class="font-futuristic text-xl font-bold text-white">Manage Stocks</h2>
+                    <button onclick="closeStockManagementModal()"
+                        class="text-zinc-400 hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Content -->
+                <div class="flex-1 overflow-y-auto p-8">
+                    <div class="overflow-x-auto rounded-xl border border-white/5 bg-black/20">
+                        <table class="w-full text-left text-sm text-zinc-400">
+                            <thead class="bg-white/5 text-xs uppercase font-futuristic tracking-wider text-white">
+                                <tr>
+                                    <th class="px-6 py-4">Variant</th>
+                                    <th class="px-6 py-4">Qty</th>
+                                    <th class="px-6 py-4">Selling Price</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4">Image</th>
+                                    <th class="px-6 py-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5" id="stock-table-body">
+                                <!-- Rows loaded via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Picker Modal (Nested) -->
+    <div id="image-picker-modal" class="fixed inset-0 z-[70] hidden">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-md" onclick="closeImagePicker()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-nike-dark w-full max-w-3xl rounded-xl border border-white/10 shadow-2xl p-6">
+                <h3 class="font-futuristic text-lg font-bold text-white mb-4">Select Variant Image</h3>
+                <div class="grid grid-cols-4 gap-4" id="image-picker-grid">
+                    <!-- Images loaded here -->
+                </div>
+                <div class="flex justify-end mt-6">
+                    <button onclick="closeImagePicker()"
+                        class="px-4 py-2 text-zinc-400 hover:text-white text-sm font-futuristic">CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openProductModal() {
+            const modal = document.getElementById('product-modal');
+            const content = document.getElementById('product-modal-content');
+            modal.classList.remove('hidden');
+            // Small delay to allow display:block to apply before transform
+            setTimeout(() => {
+                content.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        function closeProductModal() {
+            const modal = document.getElementById('product-modal');
+            const content = document.getElementById('product-modal-content');
+            content.classList.add('translate-x-full');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+    </script>
+
+</body>
+
+</html>

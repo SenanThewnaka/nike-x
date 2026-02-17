@@ -4,19 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nike-X | Supplier Management</title>
+    <title>Nike-X | User Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@500;700;900&family=Oswald:wght@400;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/script.js"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/notiflix-aio-3.2.8.min.js"></script>
+    <script src="../assets/js/admin-users.js" defer></script>
 </head>
 
-<body class="bg-nike-dark text-white h-screen overflow-hidden font-sans selection:bg-nike-green selection:text-black">
+<body class="bg-black text-white h-screen overflow-hidden font-sans selection:bg-nike-green selection:text-black">
 
-    <div class="flex h-full tech-grid relative">
+    <!-- Gradient Background Drops -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="gradient-blob top-[-20%] left-[-10%]"></div>
+        <div class="gradient-blob bottom-[-20%] right-[-10%] bg-emerald-600/30 w-[800px] h-[800px]"></div>
+    </div>
+
+    <div class="flex h-full tech-grid relative z-10">
 
         <!-- Mobile Sidebar Overlay -->
         <div id="sidebar-overlay" onclick="toggleSidebar()"
@@ -40,7 +48,7 @@
 
             <!-- Navigation -->
             <nav class="flex-1 py-8 px-4 space-y-2 overflow-y-auto">
-                <a href="admin-dashboard.html"
+                <a href="dashboard.html"
                     class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
@@ -51,7 +59,7 @@
                     <span class="font-futuristic text-sm tracking-wide">DASHBOARD</span>
                 </a>
 
-                <a href="admin-products.html"
+                <a href="products.html"
                     class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
@@ -62,7 +70,7 @@
                     <span class="font-futuristic text-sm tracking-wide">PRODUCTS</span>
                 </a>
 
-                <a href="admin-orders.html"
+                <a href="orders.html"
                     class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
@@ -73,10 +81,9 @@
                     <span class="font-futuristic text-sm tracking-wide">ORDERS</span>
                 </a>
 
-                <a href="admin-users.html"
-                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
+                <a href="users.html"
+                    class="flex items-center gap-4 px-4 py-3 bg-nike-green/10 text-nike-green rounded-lg border border-nike-green/20 transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -84,9 +91,10 @@
                     <span class="font-futuristic text-sm tracking-wide">USERS</span>
                 </a>
 
-                <a href="admin-suppliers.html"
-                    class="flex items-center gap-4 px-4 py-3 bg-nike-green/10 text-nike-green rounded-lg border border-nike-green/20 transition-all group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                <a href="suppliers.html"
+                    class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -94,7 +102,7 @@
                     <span class="font-futuristic text-sm tracking-wide">SUPPLIERS</span>
                 </a>
 
-                <a href="admin-grn.html"
+                <a href="grn.html"
                     class="flex items-center gap-4 px-4 py-3 text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all group">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-5 w-5 group-hover:text-nike-green transition-colors" fill="none" viewBox="0 0 24 24"
@@ -145,7 +153,7 @@
 
                 <!-- Search -->
                 <div class="relative flex-1 md:w-96 md:flex-none">
-                    <input type="text" placeholder="Search suppliers..."
+                    <input type="text" placeholder="Search users by name or email..."
                         class="w-full bg-black/20 border border-white/10 rounded-lg py-2 pl-10 pr-4 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-nike-green/50 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-500 absolute left-3 top-3"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -182,41 +190,49 @@
                 <!-- Header -->
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="font-futuristic text-3xl font-bold text-white">Supplier Management</h1>
-                        <p class="text-zinc-400 text-sm mt-1">Manage your product suppliers and vendors.</p>
+                        <h1 class="font-futuristic text-3xl font-bold text-white">User Management</h1>
+                        <p class="text-zinc-400 text-sm mt-1">Manage user accounts and permissions.</p>
                     </div>
-                    <button
-                        class="bg-nike-green text-black font-bold py-3 px-6 rounded hover:bg-white transition-colors font-futuristic tracking-wider text-sm flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                        </svg>
-                        ADD SUPPLIER
-                    </button>
                 </div>
 
-                <!-- Suppliers Table -->
+                <!-- Users Table -->
                 <div class="glass-card-desktop rounded-xl border border-white/5 overflow-hidden">
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-sm text-zinc-400">
                             <thead class="bg-white/5 text-xs uppercase font-futuristic tracking-wider text-white">
                                 <tr>
-                                    <th class="px-6 py-4">Supplier Name</th>
-                                    <th class="px-6 py-4">Contact Person</th>
-                                    <th class="px-6 py-4">Email</th>
-                                    <th class="px-6 py-4">Phone</th>
-                                    <th class="px-6 py-4">Address</th>
+                                    <th class="px-6 py-4">User</th>
+                                    <th class="px-6 py-4">Role</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4">Joined</th>
                                     <th class="px-6 py-4 text-right">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-white/5">
-                                <!-- Supplier 1 -->
+                            <tbody class="divide-y divide-white/5" id="users-table-body">
+                                <!-- Dynamic Content -->
+                                <!-- User 1 -->
                                 <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Nike Global Sourcing</td>
-                                    <td class="px-6 py-4">John Smith</td>
-                                    <td class="px-6 py-4">sourcing@nike.com</td>
-                                    <td class="px-6 py-4">+1 (555) 123-4567</td>
-                                    <td class="px-6 py-4">Beaverton, OR, USA</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-xs font-bold text-white border border-white/10">
+                                                AM
+                                            </div>
+                                            <div>
+                                                <p class="text-white">Alex Morgan</p>
+                                                <p class="text-xs text-zinc-500">alex@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span
+                                            class="px-2 py-1 rounded text-[10px] font-bold bg-zinc-700/50 text-zinc-300 border border-zinc-600">CUSTOMER</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span
+                                            class="px-2 py-1 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">ACTIVE</span>
+                                    </td>
+                                    <td class="px-6 py-4">Oct 12, 2023</td>
                                     <td class="px-6 py-4 text-right">
                                         <button class="text-zinc-400 hover:text-white p-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
@@ -235,13 +251,29 @@
                                     </td>
                                 </tr>
 
-                                <!-- Supplier 2 -->
+                                <!-- User 2 -->
                                 <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Asian Footwear Ltd</td>
-                                    <td class="px-6 py-4">Wei Chen</td>
-                                    <td class="px-6 py-4">sales@asianfootwear.com</td>
-                                    <td class="px-6 py-4">+86 21 5555 8888</td>
-                                    <td class="px-6 py-4">Shanghai, China</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-xs font-bold text-white border border-white/10">
+                                                AD
+                                            </div>
+                                            <div>
+                                                <p class="text-white">Admin User</p>
+                                                <p class="text-xs text-zinc-500">admin@nike-x.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span
+                                            class="px-2 py-1 rounded text-[10px] font-bold bg-purple-500/10 text-purple-500 border border-purple-500/20">ADMIN</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span
+                                            class="px-2 py-1 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">ACTIVE</span>
+                                    </td>
+                                    <td class="px-6 py-4">Sep 01, 2023</td>
                                     <td class="px-6 py-4 text-right">
                                         <button class="text-zinc-400 hover:text-white p-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
@@ -250,23 +282,32 @@
                                                     d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                             </svg>
                                         </button>
-                                        <button class="text-zinc-400 hover:text-red-500 p-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </button>
                                     </td>
                                 </tr>
 
-                                <!-- Supplier 3 -->
+                                <!-- User 3 -->
                                 <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Vietnam Shoe Co.</td>
-                                    <td class="px-6 py-4">Nguyen Van A</td>
-                                    <td class="px-6 py-4">info@vnshoeco.com</td>
-                                    <td class="px-6 py-4">+84 28 3333 4444</td>
-                                    <td class="px-6 py-4">Ho Chi Minh City, Vietnam</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-xs font-bold text-white border border-white/10">
+                                                JB
+                                            </div>
+                                            <div>
+                                                <p class="text-white">James Bond</p>
+                                                <p class="text-xs text-zinc-500">007@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span
+                                            class="px-2 py-1 rounded text-[10px] font-bold bg-zinc-700/50 text-zinc-300 border border-zinc-600">CUSTOMER</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span
+                                            class="px-2 py-1 rounded text-[10px] font-bold bg-red-500/10 text-red-500 border border-red-500/20">BANNED</span>
+                                    </td>
+                                    <td class="px-6 py-4">Oct 20, 2023</td>
                                     <td class="px-6 py-4 text-right">
                                         <button class="text-zinc-400 hover:text-white p-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
