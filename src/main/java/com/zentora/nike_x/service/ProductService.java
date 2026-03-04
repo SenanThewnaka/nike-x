@@ -25,16 +25,6 @@ public class ProductService {
 
         try (Session hibernateSession = HibernateUtil.getSessionFactory().openSession()) {
 
-            // Query logic:
-            // 1. Join Product with Stock.
-            // 2. Filter where at least one stock has qty > 0.
-            // 3. Order by Product ID DESC (Newest).
-            // 4. Limit 8.
-
-            // Since we need to aggregate or exist check, subquery is good.
-            // "SELECT p FROM Product p WHERE (SELECT SUM(s.qty) FROM Stock s WHERE
-            // s.product = p) > 0 ORDER BY p.id DESC"
-
             String hql = "SELECT p FROM Product p " +
                     "WHERE p.status.type = 'Active' AND (SELECT SUM(s.qty) FROM Stock s WHERE s.product = p AND s.status.type = 'Active') > 0 "
                     +
@@ -53,7 +43,6 @@ public class ProductService {
                 dto.setModelName(product.getModel().getName());
                 dto.setGender(product.getGender().getName());
 
-                // Get First Image
                 String hqlImage = "SELECT p.path FROM ProductImage p WHERE p.product.id = :pid";
                 List<String> images = hibernateSession.createQuery(hqlImage, String.class)
                         .setParameter("pid", product.getId())
@@ -63,7 +52,6 @@ public class ProductService {
                     dto.setImagePath(images.get(0));
                 }
 
-                // Get Lowest Active Price
                 String hqlPrice = "SELECT MIN(s.sellingPrice) FROM Stock s WHERE s.product.id = :pid AND s.status.type = 'Active' AND s.qty > 0";
                 Double minPrice = hibernateSession.createQuery(hqlPrice, Double.class)
                         .setParameter("pid", product.getId())
@@ -185,9 +173,7 @@ public class ProductService {
         boolean status = false;
         String message;
         List<ProductDTO> productDTOs = new ArrayList<>();
-        // Removed unused totalResults
 
-        // Validation
         if (request.getPage() < 1)
             request.setPage(1);
         if (request.getPageSize() < 1)
@@ -212,29 +198,24 @@ public class ProductService {
 
         try (Session hibernateSession = HibernateUtil.getSessionFactory().openSession()) {
 
-            // Build HQL dynamically
             StringBuilder hql = new StringBuilder("SELECT DISTINCT p FROM Product p ");
 
             List<String> conditions = new ArrayList<>();
             conditions.add("p.status.type = 'Active'");
 
-            // Text Search
             if (request.getQuery() != null && !request.getQuery().isBlank()) {
                 conditions.add("(LOWER(p.name) LIKE LOWER(:query) OR LOWER(p.description) LIKE LOWER(:query))");
             }
 
-            // Brands
             if (request.getBrandIds() != null && !request.getBrandIds().isEmpty()) {
                 conditions.add("p.brand.id IN (:brandIds)");
             }
 
-            // Stock Filters
             boolean hasStockFilters = (request.getSizeIds() != null && !request.getSizeIds().isEmpty()) ||
                     (request.getColorIds() != null && !request.getColorIds().isEmpty()) ||
                     request.getMinPrice() != null ||
                     request.getMaxPrice() != null;
 
-            // Subquery for stock check
             StringBuilder stockSubquery = new StringBuilder(
                     "EXISTS (SELECT 1 FROM Stock s WHERE s.product = p AND s.status.type = 'Active' AND s.qty > 0");
 
@@ -255,16 +236,13 @@ public class ProductService {
             if (hasStockFilters) {
                 conditions.add(stockSubquery.toString());
             } else {
-                // Even without filters, ensure at least one active stock exists
                 conditions.add(
                         "(SELECT COUNT(s) FROM Stock s WHERE s.product = p AND s.status.type = 'Active' AND s.qty > 0) > 0");
             }
 
-            // Assemble Where Clause
             hql.append(" WHERE ");
             hql.append(String.join(" AND ", conditions));
 
-            // Sorting
             if (request.getSort() != null) {
                 switch (request.getSort()) {
                     case "PRICE_ASC":
@@ -287,11 +265,9 @@ public class ProductService {
                 hql.append(" ORDER BY p.id DESC");
             }
 
-            // Execute Query
             org.hibernate.query.Query<com.zentora.nike_x.entity.Product> query = hibernateSession
                     .createQuery(hql.toString(), com.zentora.nike_x.entity.Product.class);
 
-            // Set Parameters
             if (request.getQuery() != null && !request.getQuery().isBlank()) {
                 query.setParameter("query", "%" + request.getQuery().trim() + "%");
             }
@@ -311,13 +287,11 @@ public class ProductService {
                 query.setParameter("maxPrice", request.getMaxPrice());
             }
 
-            // Pagination
             query.setFirstResult((request.getPage() - 1) * request.getPageSize());
             query.setMaxResults(request.getPageSize());
 
             List<com.zentora.nike_x.entity.Product> products = query.list();
 
-            // Convert to DTO
             for (com.zentora.nike_x.entity.Product product : products) {
                 ProductDTO dto = new ProductDTO();
                 dto.setId(product.getId());
@@ -326,7 +300,6 @@ public class ProductService {
                 dto.setModelName(product.getModel().getName());
                 dto.setGender(product.getGender().getName());
 
-                // Get First Image
                 String hqlImage = "SELECT p.path FROM ProductImage p WHERE p.product.id = :pid";
                 List<String> images = hibernateSession.createQuery(hqlImage, String.class)
                         .setParameter("pid", product.getId())
@@ -336,7 +309,6 @@ public class ProductService {
                     dto.setImagePath(images.get(0));
                 }
 
-                // Get Lowest Active Price
                 String hqlPrice = "SELECT MIN(s.sellingPrice) FROM Stock s WHERE s.product.id = :pid AND s.status.type = 'Active' AND s.qty > 0";
                 Double minPrice = hibernateSession.createQuery(hqlPrice, Double.class)
                         .setParameter("pid", product.getId())
@@ -348,10 +320,6 @@ public class ProductService {
 
             status = true;
             message = "Success";
-
-            // Get total count for pagination (Approximate)
-            // Pagination handled by simple list return for now
-            // totalResults logic removed as it was unused and causing warnings
 
         } catch (Exception e) {
             logger.error("Exception occurred: ", e);
@@ -373,8 +341,6 @@ public class ProductService {
             if (id == null || id.isEmpty()) {
                 message = "Product ID is required";
             } else {
-                // Use HQL to fetch product eagerly with status to ensure no lazy loading issues
-                // and safe checking
                 String hql = "SELECT p FROM Product p JOIN FETCH p.status WHERE p.id = :id";
                 Product product = hibernateSession.createQuery(hql, Product.class)
                         .setParameter("id", Integer.parseInt(id))
@@ -387,13 +353,11 @@ public class ProductService {
 
                 if (product != null && "Active".equalsIgnoreCase(product.getStatus().getType())) {
 
-                    // Main Product Data
                     ProductDTO productDTO = new ProductDTO();
                     productDTO.setId(product.getId());
                     productDTO.setName(product.getName());
                     productDTO.setDescription(product.getDescription());
 
-                    // Get Price
                     Double minPrice = (Double) hibernateSession.createQuery(
                             "SELECT MIN(s.sellingPrice) FROM Stock s WHERE s.product = :product AND s.status.type = 'Active' AND s.qty > 0")
                             .setParameter("product", product)
@@ -405,7 +369,6 @@ public class ProductService {
                     productDTO.setModelName(product.getModel().getName());
                     productDTO.setGender(product.getGender().getName());
 
-                    // Fetch Images with Color info
                     List<ProductImage> productImages = hibernateSession.createQuery(
                             "SELECT pi FROM ProductImage pi LEFT JOIN FETCH pi.stock s LEFT JOIN FETCH s.color WHERE pi.product = :product",
                             ProductImage.class)
@@ -427,12 +390,6 @@ public class ProductService {
                         }
                     }
 
-                    // Fetch Available Sizes & Colors from Stock
-                    // Only active stocks
-                    // Fetch Available Sizes & Colors from Stock with Price
-                    // Only active stocks
-                    // Fetch Available Sizes & Colors from Stock with Price & StockID
-                    // Only active stocks
                     List<Object[]> stockData = hibernateSession.createQuery(
                             "SELECT s.size.id, s.size.name, s.color.id, s.color.name, MIN(s.sellingPrice), MIN(s.id) FROM Stock s "
                                     +
@@ -474,7 +431,6 @@ public class ProductService {
                             addedColorIds.add(colorId);
                         }
 
-                        // Add combination
                         JsonObject combo = new JsonObject();
                         combo.addProperty("sizeId", sizeId);
                         combo.addProperty("colorId", colorId);
@@ -514,7 +470,6 @@ public class ProductService {
             int brandId = Integer.parseInt(brandIdStr);
             int currentProductId = Integer.parseInt(currentProductIdStr);
 
-            // 1. Get Current Product to find Gender
             Product currentProduct = hibernateSession.get(Product.class, currentProductId);
             if (currentProduct == null) {
                 return AppUtil.GSON.toJson(responseObject);
@@ -523,7 +478,6 @@ public class ProductService {
 
             List<Product> relatedProducts = new ArrayList<>();
 
-            // 2. Strategy A: Same Brand + Same Gender, Sorted by Sales
             String hqlA = "SELECT p FROM Product p " +
                     "WHERE p.brand.id = :brandId " +
                     "AND p.gender.id = :genderId " +
@@ -540,14 +494,11 @@ public class ProductService {
 
             relatedProducts.addAll(listA);
 
-            // 3. Strategy B: Fallback (Same Gender, Any Brand), Sorted by Sales
             if (relatedProducts.size() < 3) {
                 int limit = 3 - relatedProducts.size();
                 String hqlB = "SELECT p FROM Product p " +
                         "WHERE p.gender.id = :genderId " +
-                        "AND p.brand.id != :brandId " + // Exclude already searched brand if we want strictly
-                                                        // complementary or just avoid dupes (though ID check covers
-                                                        // dupes, this speeds up or diversifies)
+                        "AND p.brand.id != :brandId " +
                         "AND p.id != :currentId " +
                         "AND p.status.type = 'Active' " +
                         "ORDER BY (SELECT COALESCE(SUM(ii.qty), 0) FROM InvoiceItem ii WHERE ii.stock.product = p) DESC";
@@ -562,14 +513,12 @@ public class ProductService {
                 relatedProducts.addAll(listB);
             }
 
-            // Convert to DTOs
             List<ProductDTO> dtos = new ArrayList<>();
             for (Product p : relatedProducts) {
                 ProductDTO dto = new ProductDTO();
                 dto.setId(p.getId());
                 dto.setName(p.getName());
 
-                // Get Price
                 Double minPrice = (Double) hibernateSession.createQuery(
                         "SELECT MIN(s.sellingPrice) FROM Stock s WHERE s.product = :p AND s.status.type = 'Active' AND s.qty > 0")
                         .setParameter("p", p)
@@ -580,7 +529,6 @@ public class ProductService {
                 dto.setModelName(p.getModel().getName());
                 dto.setGender(p.getGender().getName());
 
-                // Get main image
                 List<ProductImage> imgs = hibernateSession.createQuery(
                         "SELECT pi FROM ProductImage pi WHERE pi.product = :p", ProductImage.class)
                         .setParameter("p", p)
@@ -614,7 +562,6 @@ public class ProductService {
                 itemDTO = new com.zentora.nike_x.dto.CartItemDTO();
                 itemDTO.setStockId(stock.getId()); // Use setStockId instead of setStock if flattened
 
-                // Manually map fields to match CartItemDTO structure
                 itemDTO.setProductId(stock.getProduct().getId());
                 itemDTO.setProductName(stock.getProduct().getName());
                 itemDTO.setPrice(stock.getSellingPrice());
@@ -622,10 +569,7 @@ public class ProductService {
                 itemDTO.setSizeName(stock.getSize().getName());
                 itemDTO.setColorId(stock.getColor().getId());
                 itemDTO.setColorName(stock.getColor().getName());
-                // itemDTO.setQty(1); // Qty is determined by user input, handled by caller or
-                // default 1
 
-                // Get Image
                 String hqlImage = "SELECT p.path FROM ProductImage p WHERE p.product=:prod";
                 List<String> images = hibernateSession.createQuery(hqlImage, String.class)
                         .setParameter("prod", stock.getProduct())
@@ -634,10 +578,6 @@ public class ProductService {
                 if (!images.isEmpty())
                     itemDTO.setImagePath(images.get(0));
 
-                // Flattened props if your DTO has them, otherwise nested?
-                // Based on previous logs, CartItemDTO seems flat-ish or checkout.js expects
-                // flat
-                // checking checkout.js earlier: item.productName, item.price.
             }
         } catch (Exception e) {
             logger.error("Exception occurred: ", e);
@@ -657,7 +597,6 @@ public class ProductService {
         }
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // Search across product name, brand name, and model name
             String hql = "SELECT p.id, p.name, p.brand.name, p.model.name FROM Product p " +
                     "WHERE p.status.type = 'Active' AND (" +
                     "LOWER(p.name) LIKE LOWER(:query) OR " +

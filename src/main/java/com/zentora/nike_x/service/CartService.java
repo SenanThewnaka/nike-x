@@ -21,7 +21,6 @@ import java.util.List;
 public class CartService {
     private static final Logger logger = LoggerFactory.getLogger(CartService.class);
 
-    // --- DB CART OPERATIONS ---
 
     public String addToDbCart(int userId, int stockId, int qty) {
         JsonObject response = new JsonObject();
@@ -31,10 +30,8 @@ public class CartService {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            // 1. Get or Create Cart
             Cart cart = getOrCreateCart(session, userId);
 
-            // 2. Check if item exists in cart
             Query<CartItem> itemQuery = session.createQuery(
                     "SELECT ci FROM CartItem ci WHERE ci.cart = :cart AND ci.stock.id = :sid", CartItem.class);
             itemQuery.setParameter("cart", cart);
@@ -42,11 +39,9 @@ public class CartService {
             CartItem existingItem = itemQuery.uniqueResult();
 
             if (existingItem != null) {
-                // Update Qty
                 existingItem.setQty(existingItem.getQty() + qty);
                 session.update(existingItem);
             } else {
-                // Add New Item
                 Stock stock = session.get(Stock.class, stockId);
                 if (stock != null) {
                     CartItem newItem = new CartItem();
@@ -89,7 +84,6 @@ public class CartService {
         return cart;
     }
 
-    // --- SESSION CART OPERATIONS ---
 
     @SuppressWarnings("unchecked")
     public String addToSessionCart(HttpSession httpSession, int stockId, int qty) {
@@ -122,7 +116,6 @@ public class CartService {
         return AppUtil.GSON.toJson(response);
     }
 
-    // --- MERGE LOGIC ---
 
     @SuppressWarnings("unchecked")
     public void mergeCarts(int userId, HttpSession httpSession) {
@@ -136,7 +129,6 @@ public class CartService {
                 Cart cart = getOrCreateCart(session, userId);
 
                 for (CartItemDTO sessionItem : sessionCart) {
-                    // Check DB collision
                     Query<CartItem> itemQuery = session.createQuery(
                             "SELECT ci FROM CartItem ci WHERE ci.cart = :cart AND ci.stock.id = :sid", CartItem.class);
                     itemQuery.setParameter("cart", cart);
@@ -144,21 +136,8 @@ public class CartService {
                     CartItem dbItem = itemQuery.uniqueResult();
 
                     if (dbItem != null) {
-                        // Decide: Add active qty or overwrite? Usually add.
-                        // But ensure we don't exceed stock limit (not checking here for simplicity)
-                        // Actually, let's just make sure we don't double add if logic is complex.
-                        // Simple requirement: "if product... isn't available in their db cart i wanna
-                        // add".
-                        // User said: "if the products on their session cart isn't available in their db
-                        // cart i wanna add those"
 
-                        // So if it IS available, do we skip?
-                        // "if someone added products to the session cart when they log in if the
-                        // products on thier sisson cart isn't available in their db cart i wanna add
-                        // those products their db cart"
-                        // This implies: If DB has it, DO NOTHING. If DB missing, ADD it.
 
-                        // Logic: Skip existing.
                     } else {
                         Stock stock = session.get(Stock.class, sessionItem.getStockId());
                         if (stock != null) {
@@ -176,7 +155,6 @@ public class CartService {
                 logger.error("Exception occurred: ", e);
             }
 
-            // Clear session cart after merge
             httpSession.removeAttribute("session_cart");
         }
     }
@@ -210,7 +188,6 @@ public class CartService {
         return AppUtil.GSON.toJson(r);
     }
 
-    // --- FULL CART DETAILS ---
 
     public List<CartItemDTO> getDbCartItems(int userId) {
         List<CartItemDTO> cartItems = new ArrayList<>();
@@ -228,7 +205,6 @@ public class CartService {
                 dto.setStockId(dbItem.getStock().getId());
                 dto.setQty(dbItem.getQty());
 
-                // Populate Product Details for Frontend
                 Stock s = dbItem.getStock();
                 dto.setProductId(s.getProduct().getId());
                 dto.setProductName(s.getProduct().getName());
@@ -239,20 +215,8 @@ public class CartService {
                 dto.setColorName(s.getColor().getName());
                 dto.setColorHex(s.getColor().getName());
 
-                // Get image
-                // Basic logic: Get first image of product or stock specific if available
-                // Assuming simple product image for now due to complexity of fetching active
-                // stock image
-                // Or better: Use the product's first image in list
 
-                // Warning: Lazy loading might be an issue if we don't fetch images
-                // Let's rely on frontend fetching or just send one image path if possible
-                // For now, let's keep it simple. Frontend can fetch product details if needed,
-                // OR better, exposed image path here.
-                // Assuming Product entity has activeImages list.
-                // We'll manually fetch one image.
 
-                // Efficient way:
                 Query<String> imgQuery = session.createQuery(
                         "SELECT pi.path FROM ProductImage pi WHERE pi.product.id = :pid ORDER BY pi.id ASC",
                         String.class);
@@ -319,7 +283,6 @@ public class CartService {
         boolean success = false;
 
         if (userId > 0) {
-            // DB Update
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 Transaction transaction = session.beginTransaction();
                 Query<CartItem> query = session.createQuery(
@@ -335,7 +298,6 @@ public class CartService {
                         session.update(item);
                         success = true;
                     } else {
-                        // Remove if 0
                         session.delete(item);
                         success = true;
                     }
@@ -345,10 +307,8 @@ public class CartService {
                 logger.error("Exception occurred: ", e);
             }
         } else {
-            // Session Update
             List<CartItemDTO> sessionCart = (List<CartItemDTO>) httpSession.getAttribute("session_cart");
             if (sessionCart != null) {
-                // If qty <= 0, remove
                 if (newQty <= 0) {
                     sessionCart.removeIf(i -> i.getStockId() == stockId);
                     success = true;

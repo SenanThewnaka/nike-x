@@ -31,7 +31,6 @@ public class RateLimitFilter implements ContainerRequestFilter {
         String clientIp = getClientIp(request);
         Bucket bucket = buckets.computeIfAbsent(clientIp, this::createNewBucket);
 
-        // Consume 1 token
         if (!bucket.tryConsume(1)) {
             logger.warn("Rate limit exceeded for IP: {}", clientIp);
             requestContext.abortWith(Response.status(429) // 429 Too Many Requests
@@ -42,7 +41,6 @@ public class RateLimitFilter implements ContainerRequestFilter {
     }
 
     private Bucket createNewBucket(String key) {
-        // Allows 50 requests per minute per IP
         Bandwidth limit = Bandwidth.builder()
                 .capacity(50)
                 .refillGreedy(50, Duration.ofMinutes(1))

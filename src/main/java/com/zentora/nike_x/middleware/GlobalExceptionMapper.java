@@ -9,10 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Catches all unhandled exceptions globally and prevents Tomcat
- * from returning a stack trace or an ugly 500 HTML page.
- */
+
 @Provider
 public class GlobalExceptionMapper implements ExceptionMapper<Throwable> {
 
@@ -26,8 +23,6 @@ public class GlobalExceptionMapper implements ExceptionMapper<Throwable> {
         errorResponse.put("success", false);
         errorResponse.put("message", "An unexpected internal server error occurred.");
 
-        // Optionally put exception.getMessage() if it's safe to do so.
-        // We do not leak stack traces to the client.
 
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(errorResponse)
