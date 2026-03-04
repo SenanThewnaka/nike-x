@@ -6,6 +6,8 @@ import com.zentora.nike_x.dto.SearchRequestDTO;
 import com.zentora.nike_x.util.AppUtil;
 import com.zentora.nike_x.util.HibernateUtil;
 import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.zentora.nike_x.entity.Product;
 import com.zentora.nike_x.entity.ProductImage;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService {
+    private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
 
     public String getHomeProducts() {
         JsonObject responseObject = new JsonObject();
@@ -78,7 +81,7 @@ public class ProductService {
 
         } catch (Exception e) {
             message = "Error loading home products";
-            e.printStackTrace();
+            logger.error("Exception occurred: ", e);
         }
 
         responseObject.addProperty("status", status);
@@ -108,7 +111,7 @@ public class ProductService {
             status = true;
             message = "Brands loaded";
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception occurred: ", e);
             message = "Error loading brands";
         }
 
@@ -138,7 +141,7 @@ public class ProductService {
             status = true;
             message = "Sizes loaded";
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception occurred: ", e);
             message = "Error loading sizes";
         }
 
@@ -168,7 +171,7 @@ public class ProductService {
             status = true;
             message = "Colors loaded";
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception occurred: ", e);
             message = "Error loading colors";
         }
 
@@ -351,7 +354,7 @@ public class ProductService {
             // totalResults logic removed as it was unused and causing warnings
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception occurred: ", e);
             message = "Error searching products";
         }
 
@@ -378,8 +381,8 @@ public class ProductService {
                         .uniqueResult();
 
                 if (product != null) {
-                    System.out.println(
-                            "Product Found: " + product.getName() + " | Status: " + product.getStatus().getType());
+                    logger.info(
+                            "Product Found: {} | Status: {}", product.getName(), product.getStatus().getType());
                 }
 
                 if (product != null && "Active".equalsIgnoreCase(product.getStatus().getType())) {
@@ -494,7 +497,7 @@ public class ProductService {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception occurred: ", e);
             message = "Error loading product";
         }
 
@@ -593,7 +596,7 @@ public class ProductService {
             status = true;
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception occurred: ", e);
         }
 
         responseObject.addProperty("status", status);
@@ -637,7 +640,7 @@ public class ProductService {
                 // checking checkout.js earlier: item.productName, item.price.
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception occurred: ", e);
         }
         return itemDTO;
     }
@@ -679,7 +682,7 @@ public class ProductService {
             status = true;
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception occurred: ", e);
         }
 
         responseObject.addProperty("status", status);

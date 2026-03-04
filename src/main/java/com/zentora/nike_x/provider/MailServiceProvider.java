@@ -14,11 +14,11 @@ import java.util.concurrent.TimeUnit;
 public class MailServiceProvider {
 
     private static MailServiceProvider mailServiceProvider;
-    private final String API_TOKEN = Env.get("mailersend.api_token"); // Use Env!
+    private final String API_TOKEN = Env.get("MAILERSEND_API_TOKEN") != null ? Env.get("MAILERSEND_API_TOKEN")
+            : Env.get("mailersend.api_token");
 
-
-    private final String FROM_EMAIL = "MS_254iL2@test-pzkmgq7y1vnl059v.mlsender.net";
-    private final String FROM_NAME = "Nike-X";
+    private final String FROM_EMAIL = Env.get("APP_MAIL") != null ? Env.get("APP_MAIL") : Env.get("app.mail");
+    private final String FROM_NAME = Env.get("APP_NAME") != null ? Env.get("APP_NAME") : Env.get("app.name");
 
     private ThreadPoolExecutor executor;
     private final BlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<>();
@@ -42,8 +42,7 @@ public class MailServiceProvider {
                 5,
                 TimeUnit.SECONDS,
                 blockingQueue,
-                new ThreadPoolExecutor.AbortPolicy()
-        );
+                new ThreadPoolExecutor.AbortPolicy());
         executor.prestartCoreThread();
         System.out.println("MailServiceProvider Started (Background Threads Ready)");
     }
@@ -56,7 +55,6 @@ public class MailServiceProvider {
 
     public void sendMail(MailContent mailContent) {
 
-
         Runnable emailTask = () -> {
             try {
                 Email email = new Email();
@@ -65,9 +63,7 @@ public class MailServiceProvider {
                 email.addRecipient("User", mailContent.getToEmail());
                 email.setSubject(mailContent.getSubject());
 
-
                 email.setHtml(mailContent.getHtmlContent());
-
 
                 email.setPlain("Please enable HTML to view this email.");
 
@@ -82,7 +78,6 @@ public class MailServiceProvider {
                 e.printStackTrace();
             }
         };
-
 
         boolean offered = blockingQueue.offer(emailTask);
         if (!offered) {

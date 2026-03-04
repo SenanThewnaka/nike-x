@@ -6,11 +6,17 @@
   <session-factory>
       <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
       <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-      <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/nikex?useSSL=false&amp;allowPublicKeyRetrieval=true</property>
-      <property name="hibernate.connection.username">root</property>
-      <property name="hibernate.connection.password">Senan@321</property>
-      <property name="hibernate.hbm2ddl.auto">update</property>
-      <property name="hibernate.show_sql">true</property>
+      <property name="hibernate.hbm2ddl.auto">validate</property>
+      <property name="hibernate.show_sql">false</property>
+
+      <!-- HikariCP Connection Pool Configs -->
+      <property name="hibernate.connection.provider_class">org.hibernate.hikaricp.internal.HikariCPConnectionProvider</property>
+      <property name="hibernate.hikari.minimumIdle">5</property>
+      <property name="hibernate.hikari.maximumPoolSize">20</property>
+      <property name="hibernate.hikari.idleTimeout">30000</property>
+      <property name="hibernate.hikari.poolName">NikeXHikariPool</property>
+      <property name="hibernate.hikari.maxLifetime">2000000</property>
+      <property name="hibernate.hikari.connectionTimeout">30000</property>
 
       <mapping class="com.zentora.nike_x.entity.Address"/>
       <mapping class="com.zentora.nike_x.entity.Admin"/>

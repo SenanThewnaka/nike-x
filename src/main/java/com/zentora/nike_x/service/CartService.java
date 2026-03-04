@@ -12,11 +12,14 @@ import jakarta.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartService {
+    private static final Logger logger = LoggerFactory.getLogger(CartService.class);
 
     // --- DB CART OPERATIONS ---
 
@@ -62,7 +65,7 @@ public class CartService {
             message = "Added to cart";
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception occurred: ", e);
             message = "Error adding to cart";
         }
 
@@ -126,7 +129,7 @@ public class CartService {
         List<CartItemDTO> sessionCart = (List<CartItemDTO>) httpSession.getAttribute("session_cart");
 
         if (sessionCart != null && !sessionCart.isEmpty()) {
-            System.out.println("Merging " + sessionCart.size() + " items from session to DB for user " + userId);
+            logger.info("Merging {} items from session to DB for user {}", sessionCart.size(), userId);
 
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 Transaction transaction = session.beginTransaction();
@@ -170,7 +173,7 @@ public class CartService {
 
                 transaction.commit();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Exception occurred: ", e);
             }
 
             // Clear session cart after merge
@@ -189,7 +192,7 @@ public class CartService {
                 count = result.intValue();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception occurred: ", e);
         }
         return count;
     }
@@ -263,7 +266,7 @@ public class CartService {
                 cartItems.add(dto);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception occurred: ", e);
         }
         return cartItems;
     }
@@ -306,7 +309,7 @@ public class CartService {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception occurred: ", e);
         }
         return fullDetails;
     }
@@ -339,7 +342,7 @@ public class CartService {
                 }
                 transaction.commit();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Exception occurred: ", e);
             }
         } else {
             // Session Update
