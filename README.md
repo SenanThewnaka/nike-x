@@ -43,4 +43,4 @@ Nike-X is a full-stack, Java-based e-commerce platform built as an academic port
    Deploy the resulting `.jar` or `.war` file to your server of choice (e.g. Apache Tomcat, Jetty, or via cloud deployment on Render/Koyeb).
 
 ## License
-Provided under the MIT License.
+Provided under a Custom Non-Commercial License. You may copy, modify, and run this project strictly for educational and academic purposes, but you may **not** use, sell, or sublicense it for commercial purposes.
