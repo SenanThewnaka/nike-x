@@ -60,6 +60,38 @@ public class AdminController {
     }
 
     @GET
+    @Path("/profile")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getProfile(@Context HttpServletRequest request) {
+        com.google.gson.JsonObject responseObject = new com.google.gson.JsonObject();
+        boolean status = false;
+        com.zentora.nike_x.entity.Admin admin = (com.zentora.nike_x.entity.Admin) request.getSession().getAttribute("admin");
+        if (admin != null) {
+            status = true;
+            responseObject.addProperty("email", admin.getEmail());
+            String emailPrefix = admin.getEmail().split("@")[0];
+            String name = emailPrefix.substring(0, 1).toUpperCase() + emailPrefix.substring(1);
+            responseObject.addProperty("name", name);
+            responseObject.addProperty("initials", name.substring(0, Math.min(2, name.length())).toUpperCase());
+        }
+        responseObject.addProperty("status", status);
+        return Response.ok(AppUtil.GSON.toJson(responseObject)).build();
+    }
+
+    @GET
+    @Path("/logout")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response logout(@Context HttpServletRequest request) {
+        if (request.getSession(false) != null) {
+            request.getSession().invalidate();
+        }
+        com.google.gson.JsonObject response = new com.google.gson.JsonObject();
+        response.addProperty("status", true);
+        response.addProperty("message", "Logged out successfully!");
+        return Response.ok(AppUtil.GSON.toJson(response)).build();
+    }
+
+    @GET
     @Path("/stats")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getStats() {

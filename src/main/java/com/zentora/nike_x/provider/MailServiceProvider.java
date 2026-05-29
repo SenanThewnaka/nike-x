@@ -17,8 +17,8 @@ public class MailServiceProvider {
     private final String API_TOKEN = Env.get("MAILERSEND_API_TOKEN") != null ? Env.get("MAILERSEND_API_TOKEN")
             : Env.get("mailersend.api_token");
 
-    private final String FROM_EMAIL = Env.get("APP_MAIL") != null ? Env.get("APP_MAIL") : Env.get("app.mail");
-    private final String FROM_NAME = Env.get("APP_NAME") != null ? Env.get("APP_NAME") : Env.get("app.name");
+    private final String FROM_EMAIL = "MS_dnurJU@test-pzkmgq751dnl059v.mlsender.net";
+    private final String FROM_NAME = "nike-X";
 
     private ThreadPoolExecutor executor;
     private final BlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<>();

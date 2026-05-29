@@ -100,3 +100,56 @@ function toggleSidebar() {
 }
 
 // Admin Authentication Check - REMOVED per user request (Handled by Filters)
+
+async function loadAdminProfile() {
+    const sidebar = document.getElementById('sidebar');
+    if (!sidebar) return;
+    
+    const profileDiv = sidebar.querySelector('.p-4.border-t');
+    if (!profileDiv) return;
+    
+    try {
+        const response = await fetch('../api/admin/profile');
+        if (response.ok) {
+            const data = await response.json();
+            if (data.status) {
+                const initialsDiv = profileDiv.querySelector('.rounded-full');
+                if (initialsDiv) {
+                    initialsDiv.innerText = data.initials;
+                }
+                
+                const textContainer = profileDiv.querySelector('.flex-1');
+                if (textContainer) {
+                    const namePara = textContainer.querySelector('p:nth-child(1)');
+                    const emailPara = textContainer.querySelector('p:nth-child(2)');
+                    if (namePara) namePara.innerText = data.name;
+                    if (emailPara) emailPara.innerText = data.email;
+                }
+                
+                const logoutBtn = profileDiv.querySelector('button');
+                if (logoutBtn) {
+                    logoutBtn.onclick = adminLogout;
+                }
+            }
+        }
+    } catch (e) {
+        console.error("Error loading admin profile:", e);
+    }
+}
+
+async function adminLogout() {
+    try {
+        const response = await fetch('../api/admin/logout');
+        if (response.ok) {
+            window.location.href = 'login.html';
+        }
+    } catch (e) {
+        console.error("Error logging out:", e);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (window.location.pathname.includes("/admin/")) {
+        loadAdminProfile();
+    }
+});
