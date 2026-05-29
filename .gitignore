@@ -40,3 +40,4 @@ build/
 
 ### Secrets ###
 .env
+src/main/resources/app.properties
